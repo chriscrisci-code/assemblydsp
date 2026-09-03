@@ -1,3 +1,4 @@
+import { isAdminEnabled } from "./admin-enabled.js";
 import { applySiteContent, loadSiteContent } from "./content.js";
 
 loadSiteContent().then((content) => applySiteContent(content));
@@ -65,66 +66,70 @@ document.querySelectorAll(".js-buy-chunk").forEach((btn) => {
   btn.addEventListener("click", () => startChunkCheckout(btn));
 });
 
-const authDialog = document.getElementById("auth-dialog");
-const authForm = document.getElementById("auth-form");
-const authError = document.getElementById("auth-error");
-const authPassword = document.getElementById("auth-password");
-const authCancel = document.getElementById("auth-cancel");
+if (isAdminEnabled()) {
+  const authDialog = document.getElementById("auth-dialog");
+  const authForm = document.getElementById("auth-form");
+  const authError = document.getElementById("auth-error");
+  const authPassword = document.getElementById("auth-password");
+  const authCancel = document.getElementById("auth-cancel");
 
-function openAuth() {
-  if (!authDialog) return;
-  if (authError) {
-    authError.hidden = true;
-    authError.textContent = "";
-  }
-  if (typeof authDialog.showModal === "function") authDialog.showModal();
-  else authDialog.setAttribute("open", "");
-  authPassword?.focus();
-}
-
-function closeAuth() {
-  if (!authDialog) return;
-  if (typeof authDialog.close === "function") authDialog.close();
-  else authDialog.removeAttribute("open");
-}
-
-document.addEventListener("click", (event) => {
-  const trigger = event.target.closest(".secret-t");
-  if (!trigger) return;
-  event.preventDefault();
-  openAuth();
-});
-
-authCancel?.addEventListener("click", () => closeAuth());
-
-authForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (authError) {
-    authError.hidden = true;
-    authError.textContent = "";
-  }
-  try {
-    const response = await fetch("/api/admin/login", {
-      method: "POST",
-      credentials: "same-origin",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: authPassword?.value || "" }),
-    });
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok) {
-      throw new Error(data.error || "Wrong password.");
-    }
-    window.location.assign("/admin.html");
-  } catch (err) {
+  function openAuth() {
+    if (!authDialog) return;
     if (authError) {
-      authError.hidden = false;
-      authError.textContent =
-        err instanceof Error ? err.message : "Wrong password.";
+      authError.hidden = true;
+      authError.textContent = "";
     }
+    if (typeof authDialog.showModal === "function") authDialog.showModal();
+    else authDialog.setAttribute("open", "");
+    authPassword?.focus();
   }
-});
 
-if (window.location.hash === "#admin") openAuth();
+  function closeAuth() {
+    if (!authDialog) return;
+    if (typeof authDialog.close === "function") authDialog.close();
+    else authDialog.removeAttribute("open");
+  }
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest(".secret-t");
+    if (!trigger) return;
+    event.preventDefault();
+    openAuth();
+  });
+
+  authCancel?.addEventListener("click", () => closeAuth());
+
+  authForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (authError) {
+      authError.hidden = true;
+      authError.textContent = "";
+    }
+    try {
+      const response = await fetch("/api/admin/login", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: authPassword?.value || "" }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.error || "Wrong password.");
+      }
+      window.location.assign("/admin.html");
+    } catch (err) {
+      if (authError) {
+        authError.hidden = false;
+        authError.textContent =
+          err instanceof Error ? err.message : "Wrong password.";
+      }
+    }
+  });
+
+  if (window.location.hash === "#admin") openAuth();
+} else {
+  document.getElementById("auth-dialog")?.remove();
+}
 
 const revealEls = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window) {

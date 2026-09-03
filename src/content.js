@@ -1,4 +1,5 @@
 import { getPath, mergeContent } from "../lib/site-content.js";
+import { isAdminEnabled } from "./admin-enabled.js";
 
 const LETTER_CLASSES = ["c-teal", "c-eq", "c-comp", "c-rs", "c-teal"];
 
@@ -52,6 +53,11 @@ function renderProductName(name) {
 function renderVstLine(text) {
   const host = document.querySelector("[data-vst-line]");
   if (!host) return;
+
+  if (!isAdminEnabled()) {
+    host.textContent = text;
+    return;
+  }
 
   const button = document.createElement("button");
   button.type = "button";

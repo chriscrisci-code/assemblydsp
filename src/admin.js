@@ -1,3 +1,4 @@
+import { isAdminEnabled } from "./admin-enabled.js";
 import { contentFields, getPath, mergeContent, setPath } from "../lib/site-content.js";
 
 const form = document.getElementById("admin-form");
@@ -13,7 +14,7 @@ function setStatus(message, isError = false) {
 async function requireSession() {
   const response = await fetch("/api/admin/session", { credentials: "same-origin" });
   if (response.ok) return true;
-  window.location.replace("/#admin");
+  window.location.replace("/");
   return false;
 }
 
@@ -82,6 +83,10 @@ form?.addEventListener("submit", async (event) => {
 });
 
 async function bootAdmin() {
+  if (!isAdminEnabled()) {
+    window.location.replace("/");
+    return;
+  }
   const ok = await requireSession();
   if (!ok) return;
   try {

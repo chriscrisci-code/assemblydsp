@@ -8,6 +8,7 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   root: ".",
   publicDir: "public",
+  envPrefix: ["VITE_", "ENABLE_"],
   plugins: [adminApiPlugin()],
   build: {
     outDir: "dist",
