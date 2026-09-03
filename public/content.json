@@ -41,7 +41,7 @@
     "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain when you need to duck with intention.",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
-    "rsHeadline": "Spectral compression that follows the sound",
+    "rsHeadline": "Spectral frequency suppression to tame resonances.",
     "rsBody": "RS splits each region into ~80 narrow log-spaced bands that compress independently — gain reduction traces the inverse of the spectrum for transparent leveling and resonance control.",
     "rsAlt": "CHUNK RS window — resonance suppressor with spectral gain reduction"
   },
