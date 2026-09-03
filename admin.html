@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — Assembly DSP</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body class="admin-body">
+    <div class="noise" aria-hidden="true"></div>
+    <header class="site-header is-scrolled">
+      <a class="logo" href="/">Assembly DSP</a>
+      <a class="header-cta" href="/">View site</a>
+    </header>
+
+    <main class="admin-page">
+      <p class="eyebrow">Content</p>
+      <h1 class="admin-title">Edit site copy</h1>
+      <p class="section-lede">Changes save to <code>public/content.json</code> and show on the live page after refresh.</p>
+      <p class="admin-status" id="admin-status" hidden role="status"></p>
+      <form id="admin-form" class="admin-form"></form>
+      <div class="cta-row admin-actions">
+        <button type="submit" class="btn btn-primary" form="admin-form">Save copy</button>
+        <a class="btn btn-ghost" href="/">Cancel</a>
+      </div>
+    </main>
+
+    <script type="module" src="/src/admin.js"></script>
+  </body>
+</html>

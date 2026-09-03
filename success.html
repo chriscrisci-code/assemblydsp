@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Purchase complete — Assembly DSP</title>
+    <meta
+      name="description"
+      content="Thanks for buying CHUNK from Assembly DSP. Your Stripe receipt is on the way."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header is-scrolled">
+      <a class="logo" href="/">Assembly DSP</a>
+      <a class="header-cta" href="/#pricing">Back to site</a>
+    </header>
+
+    <main class="success-page">
+      <div class="success-inner">
+        <p class="eyebrow">Checkout</p>
+        <h1 class="success-title">You’re in.</h1>
+        <p class="section-lede">
+          Thanks for purchasing <strong>CHUNK</strong>. Stripe will email your receipt.
+          Installer delivery and license keys are coming next — if you need help sooner,
+          reply to your receipt or write
+          <a href="mailto:hello@assemblydsp.com">hello@assemblydsp.com</a>.
+        </p>
+        <p class="success-session" id="session-line" hidden></p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/">Back to Assembly DSP</a>
+          <a class="btn btn-ghost" href="/#layers">See the layers</a>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get("session_id");
+      const line = document.getElementById("session-line");
+      if (sessionId && line) {
+        line.hidden = false;
+        line.textContent = `Order reference: ${sessionId}`;
+      }
+    </script>
+  </body>
+</html>

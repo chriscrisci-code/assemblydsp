@@ -1,0 +1,21 @@
+{
+  "name": "assembly-dsp-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:api": "node --env-file=.env.local scripts/dev-api.mjs",
+    "dev:all": "concurrently -k -n api,web -c teal,magenta \"npm:dev:api\" \"npm:dev\"",
+    "stripe:setup": "node --env-file=.env.local scripts/setup-stripe.mjs",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "stripe": "^17.7.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "vite": "^6.2.0"
+  }
+}

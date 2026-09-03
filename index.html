@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assembly DSP — CHUNK</title>
+    <meta
+      name="description"
+      content="CHUNK is a multiband channel processor from Assembly DSP. EQ, COMP, and spectral RS on one graph. $39 launch price. 14-day free trial."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="logo" href="#top" data-content="header.logo">Assembly DSP</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#chunk" data-content="header.navChunk">CHUNK</a>
+        <a href="#layers" data-content="header.navLayers">Layers</a>
+        <a href="#pricing" data-content="header.navPricing">Pricing</a>
+      </nav>
+      <button type="button" class="header-cta js-buy-chunk" data-content="header.buy">Buy · $39</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="brand">
+        <div class="hero-visual" aria-hidden="true">
+          <canvas id="spectrum" width="1600" height="900"></canvas>
+          <div class="hero-fade"></div>
+        </div>
+
+        <div class="hero-copy">
+          <p class="brand" id="brand" data-content="hero.brand">Assembly DSP</p>
+          <h1 class="chunk-mark" aria-label="CHUNK">
+            <span class="c-teal">C</span><span class="c-eq">H</span><span class="c-comp">U</span><span class="c-rs">N</span><span class="c-teal">K</span>
+          </h1>
+          <p class="lede" data-content="hero.lede">
+            A multiband channel processor — EQ, COMP, and spectral RS sharing one frequency graph.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#pricing" data-content="hero.ctaTrial">Start free trial</a>
+            <a class="btn btn-ghost" href="#chunk" data-content="hero.ctaLearn">See what it does</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section product" id="chunk">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="product.eyebrow">The first plugin</p>
+          <h2 data-content="product.headline">Shape the whole channel without leaving the graph.</h2>
+          <p class="section-lede" data-content="product.lede">
+            CHUNK stacks an 8-band EQ, 6-band compressor, and a split-band spectral compressor (RS)
+            on a shared spectrum view — so you carve, control, and clean in the same place.
+          </p>
+
+          <div class="signal-chain" aria-label="Signal chain">
+            <span data-content="product.chainIn">In</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainHarmonics">Harmonics</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-eq" data-content="product.chainEq">EQ</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-comp" data-content="product.chainComp">COMP</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-rs" data-content="product.chainRs">RS</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainWidth">Width</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainOut">Out</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section layers" id="layers">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="layers.eyebrow">Three layers</p>
+          <h2 data-content="layers.headline">One graph. Three jobs.</h2>
+
+          <article class="layer layer-eq reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-eq" data-content="layers.eqName">EQ</span>
+              <h3 data-content="layers.eqHeadline">Eight bands of surgical tone</h3>
+              <p data-content="layers.eqBody">
+                Bell, shelves, high/low pass, and plateau filters — drag nodes on the spectrum,
+                solo bands, and sculpt without jumping between plugins.
+              </p>
+            </div>
+            <figure class="product-shot product-eq">
+              <img
+                src="/images/chunk-eq.png"
+                data-content-alt="layers.eqAlt"
+                alt="CHUNK EQ window — multiband equalizer with spectrum graph and band controls"
+                width="1200"
+                height="700"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+
+          <article class="layer layer-comp reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-comp" data-content="layers.compName">COMP</span>
+              <h3 data-content="layers.compHeadline">Six-band dynamics with sidechain</h3>
+              <p data-content="layers.compBody">
+                Threshold, ratio, attack, release, knee, makeup, range, and gate per region —
+                plus external sidechain when you need to duck with intention.
+              </p>
+            </div>
+            <figure class="product-shot product-comp">
+              <img
+                src="/images/chunk-comp.png"
+                data-content-alt="layers.compAlt"
+                alt="CHUNK COMP window — multiband compressor with transfer curve and dynamics controls"
+                width="1200"
+                height="700"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+
+          <article class="layer layer-rs reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-rs" data-content="layers.rsName">RS</span>
+              <h3 data-content="layers.rsHeadline">Spectral compression that follows the sound</h3>
+              <p data-content="layers.rsBody">
+                RS splits each region into ~80 narrow log-spaced bands that compress independently —
+                gain reduction traces the inverse of the spectrum for transparent leveling and
+                resonance control.
+              </p>
+            </div>
+            <figure class="product-shot product-rs">
+              <img
+                src="/images/chunk-rs.png"
+                data-content-alt="layers.rsAlt"
+                alt="CHUNK RS window — resonance suppressor with spectral gain reduction"
+                width="1200"
+                height="700"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="section extras">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="extras.eyebrow">Around the edges</p>
+          <h2 data-content="extras.headline">Input color. Output polish.</h2>
+          <ul class="extras-list">
+            <li data-content="extras.item1">Input &amp; output harmonic drive with even/odd balance</li>
+            <li data-content="extras.item2">Stereo width and continuous phase control</li>
+            <li data-content="extras.item3">Output ceiling / brickwall for clean peaks</li>
+            <li data-content="extras.item4">Live spectrum analyzer under every layer</li>
+            <li data-content="extras.item5">VST3 for Windows (macOS AU coming later)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing">
+        <div class="section-inner pricing-inner">
+          <p class="eyebrow" data-content="pricing.eyebrow">Get CHUNK</p>
+          <h2 data-content="pricing.headline">Launch pricing.</h2>
+          <p class="section-lede" data-content="pricing.lede">
+            Full license, 14-day free trial — no commitment while you put it on real sessions.
+          </p>
+
+          <div class="price-block">
+            <div class="price-row">
+              <span class="price-was" data-content="pricing.was">$79</span>
+              <span class="price-now" data-content="pricing.now">$39</span>
+            </div>
+            <p class="price-note" data-content="pricing.note">Launch offer · Regular price $79 · 14-day free trial</p>
+            <div class="cta-row">
+              <a
+                class="btn btn-primary"
+                data-trial-mail
+                data-content="pricing.trial"
+                href="mailto:hello@assemblydsp.com?subject=CHUNK%2014-day%20trial"
+              >
+                Start 14-day trial
+              </a>
+              <button type="button" class="btn btn-buy js-buy-chunk" data-content="pricing.buy">
+                Buy CHUNK — $39
+              </button>
+            </div>
+            <p class="checkout-status" id="checkout-status" hidden role="status"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="logo" data-content="footer.logo">Assembly DSP</span>
+        <span class="footer-tag" data-content="footer.tag">Audio plugins, assembled.</span>
+      </div>
+      <p class="footer-fine">
+        © <span id="year"></span>
+        <span data-content="footer.copyright">Assembly DSP. CHUNK is a trademark of Assembly DSP.</span>
+        <span data-vst-line>VST is a trademark of Steinberg Media Technologies GmbH.</span>
+      </p>
+    </footer>
+
+    <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
+      <form class="auth-form" id="auth-form" method="dialog">
+        <p class="eyebrow" id="auth-title">Admin</p>
+        <label class="auth-label" for="auth-password">Password</label>
+        <input
+          id="auth-password"
+          class="auth-input"
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          required
+        />
+        <p class="auth-error" id="auth-error" hidden></p>
+        <div class="cta-row">
+          <button type="submit" class="btn btn-primary">Enter</button>
+          <button type="button" class="btn btn-ghost" id="auth-cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
