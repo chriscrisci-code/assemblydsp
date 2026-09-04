@@ -798,6 +798,27 @@ img {
   background: linear-gradient(180deg, transparent, var(--bg-deep) 30%);
 }
 
+.license-box {
+  margin: 1.5rem 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(74, 106, 112, 0.35);
+  border-bottom: 1px solid rgba(74, 106, 112, 0.35);
+}
+
+.license-key {
+  margin: 0.35rem 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 3vw, 1.55rem);
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  word-break: break-all;
+}
+
+.admin-grant {
+  margin-bottom: 1rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

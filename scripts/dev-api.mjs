@@ -7,6 +7,8 @@
 import { createServer } from "node:http";
 import checkout from "../api/checkout.js";
 import webhook from "../api/webhook.js";
+import activate from "../api/license/activate.js";
+import bySession from "../api/license/by-session.js";
 import { handleAdminRequest } from "../lib/admin.js";
 
 const port = Number(process.env.API_PORT || 8787);
@@ -14,6 +16,8 @@ const port = Number(process.env.API_PORT || 8787);
 const routes = {
   "/api/checkout": checkout,
   "/api/webhook": webhook,
+  "/api/license/activate": activate,
+  "/api/license/by-session": bySession,
 };
 
 const server = createServer(async (req, res) => {
@@ -37,7 +41,9 @@ const server = createServer(async (req, res) => {
     return;
   }
 
-  const handler = routes[url.pathname];
+  // Strip query for route table (by-session uses query string)
+  const pathname = url.pathname;
+  const handler = routes[pathname];
 
   if (!handler) {
     res.statusCode = 404;
@@ -47,6 +53,7 @@ const server = createServer(async (req, res) => {
   }
 
   try {
+    // Preserve full URL with query for by-session
     await handler(req, res);
   } catch (err) {
     console.error("[dev-api]", err);

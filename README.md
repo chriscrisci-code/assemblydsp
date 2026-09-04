@@ -25,7 +25,13 @@ stripe listen --forward-to localhost:8787/api/webhook
 npm run build
 ```
 
-Static output is `dist/`. On Vercel, `/api/checkout` and `/api/webhook` deploy as serverless functions. Set `PUBLIC_SITE_URL`, `STRIPE_SECRET_KEY`, `STRIPE_CHUNK_PRICE_ID`, and `STRIPE_WEBHOOK_SECRET` in the host env.
+Static output is `dist/`. On Vercel, `/api/*` deploys as serverless functions. Set `PUBLIC_SITE_URL`, Stripe keys, plus for licensing:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `LICENSE_TOKEN_SECRET`
+
+See [`supabase/README.md`](supabase/README.md) to create the `licenses` tables.
 
 Do **not** reuse Grove Plus price IDs — CHUNK has its own product/price.
 

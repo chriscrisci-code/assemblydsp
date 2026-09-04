@@ -21,8 +21,44 @@
     </header>
 
     <main class="admin-page">
-      <p class="eyebrow">Content</p>
-      <h1 class="admin-title">Edit site copy</h1>
+      <p class="eyebrow">Admin</p>
+      <h1 class="admin-title">Assembly DSP admin</h1>
+
+      <section class="admin-grant" id="grant-section">
+        <h2 class="admin-section" style="border-top: none; padding-top: 0; margin-top: 0">
+          Grant license
+        </h2>
+        <p class="section-lede">
+          Mint a CHUNK key for anyone (comps, beta, yourself). The plaintext key is shown
+          once — copy it before you leave this page.
+        </p>
+        <form id="grant-form" class="admin-form">
+          <label class="admin-label">
+            <span>Email</span>
+            <input class="admin-input" type="email" name="email" required placeholder="name@example.com" />
+          </label>
+          <label class="admin-label">
+            <span>Note (optional)</span>
+            <input class="admin-input" type="text" name="note" placeholder="Beta tester / press / friend" />
+          </label>
+          <label class="admin-label">
+            <span>Max machines</span>
+            <input class="admin-input" type="number" name="maxActivations" min="1" max="10" value="2" />
+          </label>
+          <div class="cta-row">
+            <button type="submit" class="btn btn-primary">Grant CHUNK license</button>
+          </div>
+        </form>
+        <p class="admin-status" id="grant-status" hidden role="status"></p>
+        <div class="license-box" id="grant-result" hidden>
+          <p class="auth-label">License key (copy now)</p>
+          <p class="license-key" id="grant-key"></p>
+          <button type="button" class="btn btn-ghost" id="grant-copy">Copy key</button>
+        </div>
+      </section>
+
+      <p class="eyebrow" style="margin-top: 2.5rem">Content</p>
+      <h2 class="admin-title" style="font-size: clamp(1.5rem, 4vw, 2.25rem)">Edit site copy</h2>
       <p class="section-lede">Changes save to <code>public/content.json</code> and show on the live page after refresh.</p>
       <p class="admin-status" id="admin-status" hidden role="status"></p>
       <form id="admin-form" class="admin-form"></form>

@@ -6,7 +6,7 @@
     <title>Purchase complete — Assembly DSP</title>
     <meta
       name="description"
-      content="Thanks for buying CHUNK from Assembly DSP. Your Stripe receipt is on the way."
+      content="Thanks for buying CHUNK from Assembly DSP. Your license key is below."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,10 +30,16 @@
         <h1 class="success-title">You’re in.</h1>
         <p class="section-lede">
           Thanks for purchasing <strong>CHUNK</strong>. Stripe will email your receipt.
-          Installer delivery and license keys are coming next — if you need help sooner,
-          reply to your receipt or write
-          <a href="mailto:hello@assemblydsp.com">hello@assemblydsp.com</a>.
+          Enter this license key in CHUNK to activate (up to 2 machines).
         </p>
+
+        <div class="license-box" id="license-box">
+          <p class="auth-label">Your license key</p>
+          <p class="license-key" id="license-key">Loading…</p>
+          <p class="success-session" id="license-status" role="status"></p>
+          <button type="button" class="btn btn-ghost" id="copy-key" hidden>Copy key</button>
+        </div>
+
         <p class="success-session" id="session-line" hidden></p>
         <div class="cta-row">
           <a class="btn btn-primary" href="/">Back to Assembly DSP</a>
@@ -46,10 +52,49 @@
       const params = new URLSearchParams(window.location.search);
       const sessionId = params.get("session_id");
       const line = document.getElementById("session-line");
+      const keyEl = document.getElementById("license-key");
+      const statusEl = document.getElementById("license-status");
+      const copyBtn = document.getElementById("copy-key");
+
       if (sessionId && line) {
         line.hidden = false;
         line.textContent = `Order reference: ${sessionId}`;
       }
+
+      async function loadLicense(attempt = 0) {
+        if (!sessionId) {
+          keyEl.textContent = "—";
+          statusEl.textContent = "Missing checkout session.";
+          return;
+        }
+        try {
+          const response = await fetch(
+            `/api/license/by-session?session_id=${encodeURIComponent(sessionId)}`,
+          );
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.licenseKey) {
+            if (attempt < 8) {
+              statusEl.textContent = "Preparing your key…";
+              setTimeout(() => loadLicense(attempt + 1), 1500);
+              return;
+            }
+            throw new Error(data.error || "Could not load license key.");
+          }
+          keyEl.textContent = data.licenseKey;
+          statusEl.textContent = "Enter this key in CHUNK → License.";
+          copyBtn.hidden = false;
+          copyBtn.onclick = async () => {
+            await navigator.clipboard.writeText(data.licenseKey);
+            copyBtn.textContent = "Copied";
+          };
+        } catch (err) {
+          keyEl.textContent = "—";
+          statusEl.textContent =
+            err instanceof Error ? err.message : "Could not load license key.";
+        }
+      }
+
+      loadLicense();
     </script>
   </body>
 </html>

@@ -82,6 +82,54 @@ form?.addEventListener("submit", async (event) => {
   }
 });
 
+const grantForm = document.getElementById("grant-form");
+const grantStatus = document.getElementById("grant-status");
+const grantResult = document.getElementById("grant-result");
+const grantKey = document.getElementById("grant-key");
+const grantCopy = document.getElementById("grant-copy");
+
+function setGrantStatus(message, isError = false) {
+  if (!grantStatus) return;
+  grantStatus.hidden = !message;
+  grantStatus.textContent = message || "";
+  grantStatus.dataset.error = isError ? "1" : "";
+}
+
+grantForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  setGrantStatus("Granting…");
+  if (grantResult) grantResult.hidden = true;
+  const fd = new FormData(grantForm);
+  try {
+    const response = await fetch("/api/admin/license/grant", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: fd.get("email"),
+        note: fd.get("note"),
+        maxActivations: Number(fd.get("maxActivations") || 2),
+      }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.licenseKey) {
+      throw new Error(data.error || "Grant failed.");
+    }
+    setGrantStatus(`Granted for ${data.email}. Copy the key below.`);
+    if (grantKey) grantKey.textContent = data.licenseKey;
+    if (grantResult) grantResult.hidden = false;
+    if (grantCopy) {
+      grantCopy.textContent = "Copy key";
+      grantCopy.onclick = async () => {
+        await navigator.clipboard.writeText(data.licenseKey);
+        grantCopy.textContent = "Copied";
+      };
+    }
+  } catch (err) {
+    setGrantStatus(err instanceof Error ? err.message : "Grant failed.", true);
+  }
+});
+
 async function bootAdmin() {
   if (!isAdminEnabled()) {
     window.location.replace("/");

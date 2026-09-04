@@ -1,3 +1,4 @@
+import { ensureStripeLicense, isLicenseConfigured } from "../lib/license.js";
 import { recordPurchase } from "../lib/purchases.js";
 import { readRawBody, sendJson } from "../lib/http.js";
 import { getStripe, isWebhookConfigured } from "../lib/stripe.js";
@@ -67,6 +68,20 @@ export default async function handler(req, res) {
           product: session.metadata?.product || "chunk",
           plugin: session.metadata?.plugin || "chunk",
         });
+
+        if (isLicenseConfigured()) {
+          const { licenseKey, created } = await ensureStripeLicense(session);
+          console.log(
+            "[license]",
+            created ? "created" : "existing",
+            "session",
+            session.id,
+            "last4",
+            licenseKey?.slice(-4),
+          );
+        } else {
+          console.warn("[license] skipped — licensing not configured");
+        }
       }
     }
   } catch (err) {
