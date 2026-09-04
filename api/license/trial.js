@@ -1,5 +1,6 @@
 import { createTrialLicense, isLicenseConfigured, TRIAL_DAYS } from "../../lib/license.js";
 import { isDownloadConfigured } from "../../lib/download.js";
+import { sendLicenseKeyEmail } from "../../lib/email.js";
 import { readJsonBody, sendJson } from "../../lib/http.js";
 
 export default async function handler(req, res) {
@@ -58,6 +59,7 @@ export default async function handler(req, res) {
       trialDays: TRIAL_DAYS,
       created: minted.created,
       licenseType: "trial",
+      emailSent: false,
     };
 
     if (isDownloadConfigured()) {
@@ -65,6 +67,24 @@ export default async function handler(req, res) {
     } else {
       payload.downloadUrl = null;
       payload.downloadPending = true;
+    }
+
+    if (emailRaw) {
+      const mail = await sendLicenseKeyEmail({
+        to: emailRaw,
+        licenseKey: minted.licenseKey,
+        licenseType: "trial",
+        expiresAt: minted.license.expires_at,
+        trialDays: TRIAL_DAYS,
+      });
+      payload.emailSent = Boolean(mail.ok);
+      if (!mail.ok) {
+        console.error(
+          "[license/trial] email",
+          mail.error,
+          mail.skipped ? "(skipped)" : "",
+        );
+      }
     }
 
     sendJson(res, 200, payload);

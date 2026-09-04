@@ -25,3 +25,4 @@ Do **not** put the service role key in frontend code.
 - **Download:** `GET /api/download?session_id=` or `?license_key=` → short-lived redirect to `CHUNK_BUILD_URL`
 - **Manual:** Admin (local `ENABLE_ADMIN=true`) → Grant license → copy key
 - **Plugin:** CHUNK → License → paste key → Activate → caches token under `%AppData%/Assembly DSP/CHUNK/license.json`
+- **Email:** Resend sends trial/purchase/recover keys when `RESEND_API_KEY` + `EMAIL_FROM` are set (inbound mail stays on ImprovMX)

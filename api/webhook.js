@@ -1,4 +1,5 @@
-import { ensureStripeLicense, isLicenseConfigured } from "../lib/license.js";
+import { ensureStripeLicense, isLicenseConfigured, TRIAL_DAYS } from "../lib/license.js";
+import { sendLicenseKeyEmail } from "../lib/email.js";
 import { recordPurchase } from "../lib/purchases.js";
 import { readRawBody, sendJson } from "../lib/http.js";
 import { getStripe, isWebhookConfigured } from "../lib/stripe.js";
@@ -48,6 +49,11 @@ export default async function handler(req, res) {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
       if (session.mode === "payment" && session.payment_status === "paid") {
+        const customerEmail =
+          session.customer_details?.email ||
+          session.customer_email ||
+          null;
+
         await recordPurchase({
           eventId: event.id,
           sessionId: session.id,
@@ -59,10 +65,7 @@ export default async function handler(req, res) {
             typeof session.customer === "string"
               ? session.customer
               : session.customer?.id ?? null,
-          customerEmail:
-            session.customer_details?.email ||
-            session.customer_email ||
-            null,
+          customerEmail,
           amountTotal: session.amount_total,
           currency: session.currency,
           product: session.metadata?.product || "chunk",
@@ -70,7 +73,8 @@ export default async function handler(req, res) {
         });
 
         if (isLicenseConfigured()) {
-          const { licenseKey, created } = await ensureStripeLicense(session);
+          const { licenseKey, created, license } =
+            await ensureStripeLicense(session);
           console.log(
             "[license]",
             created ? "created" : "existing",
@@ -79,6 +83,25 @@ export default async function handler(req, res) {
             "last4",
             licenseKey?.slice(-4),
           );
+
+          if (customerEmail && licenseKey) {
+            const mail = await sendLicenseKeyEmail({
+              to: customerEmail,
+              licenseKey,
+              licenseType: "paid",
+              expiresAt: license?.expires_at || null,
+              trialDays: TRIAL_DAYS,
+            });
+            if (mail.ok) {
+              console.log("[license] email sent", mail.id || "");
+            } else {
+              console.error(
+                "[license] email",
+                mail.error,
+                mail.skipped ? "(skipped)" : "",
+              );
+            }
+          }
         } else {
           console.warn("[license] skipped — licensing not configured");
         }

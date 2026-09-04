@@ -31,6 +31,11 @@ Static output is `dist/`. On Vercel, `/api/*` deploys as serverless functions. S
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `LICENSE_TOKEN_SECRET`
 
+Transactional email (Resend — send only; ImprovMX receives/forwards inbound):
+
+- `RESEND_API_KEY` — already used in Production if set
+- `EMAIL_FROM` — e.g. `Assembly DSP <support@assemblydsp.com>` (domain must be verified in Resend)
+
 See [`supabase/README.md`](supabase/README.md) to create the `licenses` tables.
 
 Do **not** reuse Grove Plus price IDs — CHUNK has its own product/price.

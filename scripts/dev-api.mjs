@@ -10,6 +10,7 @@ import webhook from "../api/webhook.js";
 import activate from "../api/license/activate.js";
 import bySession from "../api/license/by-session.js";
 import trial from "../api/license/trial.js";
+import recover from "../api/license/recover.js";
 import download from "../api/download.js";
 import { handleAdminRequest } from "../lib/admin.js";
 
@@ -21,6 +22,7 @@ const routes = {
   "/api/license/activate": activate,
   "/api/license/by-session": bySession,
   "/api/license/trial": trial,
+  "/api/license/recover": recover,
   "/api/download": download,
 };
 
