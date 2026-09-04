@@ -11,6 +11,7 @@ import activate from "../api/license/activate.js";
 import bySession from "../api/license/by-session.js";
 import trial from "../api/license/trial.js";
 import recover from "../api/license/recover.js";
+import emailStatus from "../api/license/email-status.js";
 import download from "../api/download.js";
 import { handleAdminRequest } from "../lib/admin.js";
 
@@ -23,6 +24,7 @@ const routes = {
   "/api/license/by-session": bySession,
   "/api/license/trial": trial,
   "/api/license/recover": recover,
+  "/api/license/email-status": emailStatus,
   "/api/download": download,
 };
 

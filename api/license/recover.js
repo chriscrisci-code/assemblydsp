@@ -84,6 +84,8 @@ export default async function handler(req, res) {
       console.error("[license/recover] all sends failed", lastError);
       sendJson(res, 502, {
         error: "Could not send email right now. Try again or contact support@assemblydsp.com.",
+        // Temporary: surface provider reason so production config can be fixed.
+        detail: lastError || null,
       });
       return;
     }

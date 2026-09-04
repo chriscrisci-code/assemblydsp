@@ -125,7 +125,10 @@
           });
           const data = await response.json().catch(() => ({}));
           if (!response.ok) {
-            throw new Error(data.error || "Could not send recovery email.");
+            throw new Error(
+              [data.error, data.detail].filter(Boolean).join(" — ") ||
+                "Could not send recovery email.",
+            );
           }
           if (statusEl) {
             statusEl.hidden = false;
