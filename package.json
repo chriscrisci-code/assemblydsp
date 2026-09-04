@@ -8,6 +8,7 @@
     "dev:api": "node --env-file=.env.local scripts/dev-api.mjs",
     "dev:all": "concurrently -k -n api,web -c teal,magenta \"npm:dev:api\" \"npm:dev\"",
     "stripe:setup": "node --env-file=.env.local scripts/setup-stripe.mjs",
+    "e2e:trial": "node --env-file=.env.local scripts/e2e-trial-loop.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },

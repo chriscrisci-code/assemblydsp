@@ -25,14 +25,6 @@ export function applySiteContent(content) {
   renderProductName(data.hero?.productName || "CHUNK");
   renderVstLine(data.footer?.vst || "");
 
-  const email = data.pricing?.contactEmail || "hello@assemblydsp.com";
-  document.querySelectorAll("[data-trial-mail]").forEach((el) => {
-    el.setAttribute(
-      "href",
-      `mailto:${email}?subject=${encodeURIComponent("CHUNK 14-day trial")}`,
-    );
-  });
-
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 }

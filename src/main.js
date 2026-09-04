@@ -66,6 +66,64 @@ document.querySelectorAll(".js-buy-chunk").forEach((btn) => {
   btn.addEventListener("click", () => startChunkCheckout(btn));
 });
 
+/** Mint a 14-day trial license and open the success page (key + download). */
+async function startChunkTrial(trigger) {
+  const status = document.getElementById("checkout-status");
+  const buttons = document.querySelectorAll(".js-start-trial");
+
+  const setBusy = (busy) => {
+    buttons.forEach((btn) => {
+      btn.disabled = busy;
+      btn.dataset.label ??= btn.textContent || "";
+      btn.textContent = busy ? "Starting trial…" : btn.dataset.label;
+    });
+  };
+
+  setBusy(true);
+  if (status) {
+    status.hidden = false;
+    status.dataset.error = "";
+    status.textContent = "Creating your trial license…";
+  }
+
+  try {
+    const response = await fetch("/api/license/trial", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.licenseKey) {
+      throw new Error(data.error || "Trial could not be started.");
+    }
+    sessionStorage.setItem(
+      "assemblydsp_trial",
+      JSON.stringify({
+        licenseKey: data.licenseKey,
+        expiresAt: data.expiresAt,
+        product: data.product,
+      }),
+    );
+    window.location.assign("/trial-success.html");
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : "Trial could not be started.";
+    if (status) {
+      status.dataset.error = "1";
+      status.hidden = false;
+      status.textContent = message;
+    } else {
+      window.alert(message);
+    }
+    setBusy(false);
+    trigger?.focus?.();
+  }
+}
+
+document.querySelectorAll(".js-start-trial").forEach((btn) => {
+  btn.addEventListener("click", () => startChunkTrial(btn));
+});
+
 if (isAdminEnabled()) {
   const authDialog = document.getElementById("auth-dialog");
   const authForm = document.getElementById("auth-form");

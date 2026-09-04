@@ -9,6 +9,8 @@ import checkout from "../api/checkout.js";
 import webhook from "../api/webhook.js";
 import activate from "../api/license/activate.js";
 import bySession from "../api/license/by-session.js";
+import trial from "../api/license/trial.js";
+import download from "../api/download.js";
 import { handleAdminRequest } from "../lib/admin.js";
 
 const port = Number(process.env.API_PORT || 8787);
@@ -18,6 +20,8 @@ const routes = {
   "/api/webhook": webhook,
   "/api/license/activate": activate,
   "/api/license/by-session": bySession,
+  "/api/license/trial": trial,
+  "/api/download": download,
 };
 
 const server = createServer(async (req, res) => {

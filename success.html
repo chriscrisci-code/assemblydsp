@@ -40,11 +40,18 @@
           <button type="button" class="btn btn-ghost" id="copy-key" hidden>Copy key</button>
         </div>
 
+        <ol class="section-lede" style="padding-left: 1.25rem; margin: 1.5rem 0">
+          <li>Download and install CHUNK (or re-download if you already have the trial build)</li>
+          <li>Open CHUNK → License → paste this paid key → Activate</li>
+        </ol>
+
         <p class="success-session" id="session-line" hidden></p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="/">Back to Assembly DSP</a>
+          <a class="btn btn-primary" id="download-btn" href="#" hidden>Download CHUNK</a>
+          <a class="btn btn-ghost" href="/">Back to Assembly DSP</a>
           <a class="btn btn-ghost" href="/#layers">See the layers</a>
         </div>
+        <p class="success-session" id="download-status" role="status"></p>
       </div>
     </main>
 
@@ -55,10 +62,35 @@
       const keyEl = document.getElementById("license-key");
       const statusEl = document.getElementById("license-status");
       const copyBtn = document.getElementById("copy-key");
+      const downloadBtn = document.getElementById("download-btn");
+      const downloadStatus = document.getElementById("download-status");
 
       if (sessionId && line) {
         line.hidden = false;
         line.textContent = `Order reference: ${sessionId}`;
+      }
+
+      function wireDownload() {
+        if (!sessionId || !downloadBtn) return;
+        downloadBtn.hidden = false;
+        downloadBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          downloadStatus.textContent = "Preparing download…";
+          try {
+            const response = await fetch(
+              `/api/download?session_id=${encodeURIComponent(sessionId)}`,
+            );
+            const body = await response.json().catch(() => ({}));
+            if (!response.ok || !body.url) {
+              throw new Error(body.error || "Download not available yet.");
+            }
+            window.location.assign(body.url);
+            downloadStatus.textContent = "";
+          } catch (err) {
+            downloadStatus.textContent =
+              err instanceof Error ? err.message : "Download failed.";
+          }
+        });
       }
 
       async function loadLicense(attempt = 0) {
@@ -87,6 +119,7 @@
             await navigator.clipboard.writeText(data.licenseKey);
             copyBtn.textContent = "Copied";
           };
+          wireDownload();
         } catch (err) {
           keyEl.textContent = "—";
           statusEl.textContent =

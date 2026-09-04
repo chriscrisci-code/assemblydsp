@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trial started — Assembly DSP</title>
+    <meta
+      name="description"
+      content="Your CHUNK 14-day trial license key and download."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header is-scrolled">
+      <a class="logo" href="/">Assembly DSP</a>
+      <a class="header-cta" href="/#pricing">Buy CHUNK</a>
+    </header>
+
+    <main class="success-page">
+      <div class="success-inner">
+        <p class="eyebrow">14-day trial</p>
+        <h1 class="success-title">You’re set.</h1>
+        <p class="section-lede">
+          Install CHUNK, open it in your DAW, then paste this key under
+          <strong>License → Activate</strong>. Full DSP for 14 days — then buy to keep going.
+        </p>
+
+        <div class="license-box" id="license-box">
+          <p class="auth-label">Your trial key</p>
+          <p class="license-key" id="license-key">Loading…</p>
+          <p class="success-session" id="license-status" role="status"></p>
+          <button type="button" class="btn btn-ghost" id="copy-key" hidden>Copy key</button>
+        </div>
+
+        <ol class="section-lede" style="padding-left: 1.25rem; margin: 1.5rem 0">
+          <li>Download and install CHUNK.vst3 into your VST3 folder</li>
+          <li>Open CHUNK in your DAW → License</li>
+          <li>Paste the key → Activate</li>
+        </ol>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" id="download-btn" href="#" hidden>Download CHUNK</a>
+          <a class="btn btn-ghost" href="/#pricing">Buy full license</a>
+          <a class="btn btn-ghost" href="/">Back to site</a>
+        </div>
+        <p class="success-session" id="download-status" role="status"></p>
+      </div>
+    </main>
+
+    <script type="module">
+      const STORAGE = "assemblydsp_trial";
+      const keyEl = document.getElementById("license-key");
+      const statusEl = document.getElementById("license-status");
+      const copyBtn = document.getElementById("copy-key");
+      const downloadBtn = document.getElementById("download-btn");
+      const downloadStatus = document.getElementById("download-status");
+
+      function readTrial() {
+        try {
+          const raw = sessionStorage.getItem(STORAGE);
+          return raw ? JSON.parse(raw) : null;
+        } catch {
+          return null;
+        }
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const fromQuery = params.get("key");
+      const data = readTrial() || (fromQuery ? { licenseKey: fromQuery } : null);
+
+      if (!data?.licenseKey) {
+        keyEl.textContent = "—";
+        statusEl.textContent =
+          "No trial on this page. Start one from the CHUNK product page.";
+      } else {
+        keyEl.textContent = data.licenseKey;
+        const exp = data.expiresAt
+          ? `Expires ${new Date(data.expiresAt).toLocaleString()}.`
+          : "Valid for 14 days after activation.";
+        statusEl.textContent = exp;
+        copyBtn.hidden = false;
+        copyBtn.onclick = async () => {
+          await navigator.clipboard.writeText(data.licenseKey);
+          copyBtn.textContent = "Copied";
+        };
+
+        downloadBtn.hidden = false;
+        downloadBtn.addEventListener("click", async (e) => {
+          e.preventDefault();
+          downloadStatus.textContent = "Preparing download…";
+          try {
+            const response = await fetch(
+              `/api/download?license_key=${encodeURIComponent(data.licenseKey)}`,
+            );
+            const body = await response.json().catch(() => ({}));
+            if (!response.ok || !body.url) {
+              throw new Error(body.error || "Download not available yet.");
+            }
+            window.location.assign(body.url);
+            downloadStatus.textContent = "";
+          } catch (err) {
+            downloadStatus.textContent =
+              err instanceof Error ? err.message : "Download failed.";
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -17,6 +17,7 @@ export default defineConfig({
       input: {
         main: resolve(rootDir, "index.html"),
         success: resolve(rootDir, "success.html"),
+        trialSuccess: resolve(rootDir, "trial-success.html"),
         admin: resolve(rootDir, "admin.html"),
       },
     },
