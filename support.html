@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support — Assembly DSP</title>
+    <meta
+      name="description"
+      content="CHUNK support: recover a lost trial or license key, or contact Assembly DSP."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header is-scrolled">
+      <a class="logo" href="/">Assembly DSP</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/#chunk">CHUNK</a>
+        <a href="/#layers">Layers</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/support.html" aria-current="page">Support</a>
+      </nav>
+      <a class="header-cta" href="/#pricing">Buy · $39</a>
+    </header>
+
+    <main class="support-page">
+      <div class="support-inner">
+        <p class="eyebrow">Support</p>
+        <h1 class="success-title">We’re here.</h1>
+        <p class="section-lede">
+          Lost your CHUNK trial or purchase key? Enter the email you used and we’ll send it again.
+          For anything else, write
+          <a href="mailto:support@assemblydsp.com">support@assemblydsp.com</a>.
+        </p>
+
+        <section class="support-card" aria-labelledby="recover-heading">
+          <h2 id="recover-heading" class="support-card-title">I lost my key</h2>
+          <p class="support-card-lede">
+            Use the same email from your trial signup or Stripe checkout. We’ll email active keys to that address — we never show them on this page.
+          </p>
+          <form class="auth-form support-form" id="recover-form">
+            <label class="auth-label" for="recover-email">Email</label>
+            <input
+              id="recover-email"
+              class="auth-input"
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="you@studio.com"
+            />
+            <p class="auth-error" id="recover-error" hidden></p>
+            <p class="support-status" id="recover-status" hidden role="status"></p>
+            <div class="cta-row">
+              <button type="submit" class="btn btn-primary" id="recover-submit">
+                Email my key
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="support-card" aria-labelledby="help-heading">
+          <h2 id="help-heading" class="support-card-title">Other help</h2>
+          <ul class="support-list">
+            <li>Activation: open CHUNK → License → paste key → Activate</li>
+            <li>Download again after you have a key: start from the email link, or contact support</li>
+            <li>
+              Buy CHUNK:
+              <a href="/#pricing">assemblydsp.com/#pricing</a>
+            </li>
+          </ul>
+        </section>
+
+        <div class="cta-row">
+          <a class="btn btn-ghost" href="/">Back to Assembly DSP</a>
+          <a class="btn btn-ghost" href="/#pricing">Start a trial</a>
+        </div>
+      </div>
+    </main>
+
+    <script type="module">
+      const form = document.getElementById("recover-form");
+      const emailInput = document.getElementById("recover-email");
+      const errorEl = document.getElementById("recover-error");
+      const statusEl = document.getElementById("recover-status");
+      const submitBtn = document.getElementById("recover-submit");
+
+      form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const email = String(emailInput?.value || "").trim();
+        if (errorEl) {
+          errorEl.hidden = true;
+          errorEl.textContent = "";
+        }
+        if (statusEl) {
+          statusEl.hidden = true;
+          statusEl.textContent = "";
+          statusEl.dataset.error = "";
+        }
+        if (!email) {
+          if (errorEl) {
+            errorEl.hidden = false;
+            errorEl.textContent = "Enter a valid email.";
+          }
+          return;
+        }
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending…";
+        }
+
+        try {
+          const response = await fetch("/api/license/recover", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(data.error || "Could not send recovery email.");
+          }
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              data.message ||
+              "If we find an active license for that email, we’ll send the key shortly. Check your inbox (and spam).";
+          }
+        } catch (err) {
+          const message =
+            err instanceof Error ? err.message : "Could not send recovery email.";
+          if (errorEl) {
+            errorEl.hidden = false;
+            errorEl.textContent = message;
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Email my key";
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

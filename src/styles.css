@@ -667,6 +667,77 @@ img {
   margin-top: 1.75rem;
 }
 
+/* Support */
+.support-page {
+  min-height: 100svh;
+  padding: calc(5.5rem + env(safe-area-inset-top)) var(--pad) 3.5rem;
+}
+
+.support-inner {
+  max-width: 36rem;
+}
+
+.support-inner .section-lede a {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.support-card {
+  margin: 2rem 0;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(74, 106, 112, 0.35);
+}
+
+.support-card-title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.support-card-lede {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.support-form .auth-input {
+  margin-bottom: 0.75rem;
+}
+
+.support-status {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--teal);
+}
+
+.support-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.support-list a {
+  color: var(--teal);
+}
+
+.support-inner .cta-row {
+  margin-top: 1.5rem;
+}
+
+.footer-support {
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  margin: 0 0.35rem;
+}
+
 .secret-t {
   all: unset;
   font: inherit;
@@ -681,7 +752,7 @@ img {
 }
 
 .auth-dialog {
-  width: min(22rem, calc(100vw - 2rem));
+  width: min(26rem, calc(100vw - 2rem));
   padding: 1.5rem;
   border: 1px solid rgba(74, 106, 112, 0.4);
   border-radius: 2px;
@@ -696,6 +767,13 @@ img {
 
 .auth-form .eyebrow {
   margin-bottom: 1rem;
+}
+
+.auth-hint {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 .auth-label {

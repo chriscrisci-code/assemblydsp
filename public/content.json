@@ -8,6 +8,7 @@
     "navChunk": "CHUNK",
     "navLayers": "Layers",
     "navPricing": "Pricing",
+    "navSupport": "Support",
     "buy": "Buy · $39"
   },
   "hero": {
@@ -63,7 +64,7 @@
     "note": "Launch offer · Regular price $79 · 14-day free trial",
     "trial": "Start 14-day trial",
     "buy": "Buy CHUNK — $39",
-    "contactEmail": "hello@assemblydsp.com"
+    "contactEmail": "support@assemblydsp.com"
   },
   "footer": {
     "logo": "Assembly DSP",

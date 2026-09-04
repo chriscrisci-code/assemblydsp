@@ -32,8 +32,12 @@ export default async function handler(req, res) {
   }
 
   const emailRaw = body.email ? String(body.email).trim() : "";
-  if (emailRaw && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRaw)) {
-    sendJson(res, 400, { error: "Enter a valid email, or leave it blank." });
+  if (!emailRaw) {
+    sendJson(res, 400, { error: "Email is required to start a trial." });
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailRaw)) {
+    sendJson(res, 400, { error: "Enter a valid email." });
     return;
   }
 
@@ -47,7 +51,7 @@ export default async function handler(req, res) {
       null;
 
     const minted = await createTrialLicense({
-      email: emailRaw || null,
+      email: emailRaw,
       note: body.note || "14-day free trial",
       clientKey,
     });

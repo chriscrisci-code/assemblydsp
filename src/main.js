@@ -66,8 +66,32 @@ document.querySelectorAll(".js-buy-chunk").forEach((btn) => {
   btn.addEventListener("click", () => startChunkCheckout(btn));
 });
 
-/** Mint a 14-day trial license and open the success page (key + download). */
-async function startChunkTrial(trigger) {
+/** Mint a 14-day trial license (requires email) and open the success page. */
+const trialDialog = document.getElementById("trial-dialog");
+const trialForm = document.getElementById("trial-form");
+const trialEmail = document.getElementById("trial-email");
+const trialError = document.getElementById("trial-error");
+const trialCancel = document.getElementById("trial-cancel");
+const trialSubmit = document.getElementById("trial-submit");
+
+function openTrialDialog() {
+  if (!trialDialog) return;
+  if (trialError) {
+    trialError.hidden = true;
+    trialError.textContent = "";
+  }
+  if (typeof trialDialog.showModal === "function") trialDialog.showModal();
+  else trialDialog.setAttribute("open", "");
+  trialEmail?.focus();
+}
+
+function closeTrialDialog() {
+  if (!trialDialog) return;
+  if (typeof trialDialog.close === "function") trialDialog.close();
+  else trialDialog.removeAttribute("open");
+}
+
+async function startChunkTrial(email) {
   const status = document.getElementById("checkout-status");
   const buttons = document.querySelectorAll(".js-start-trial");
 
@@ -77,6 +101,10 @@ async function startChunkTrial(trigger) {
       btn.dataset.label ??= btn.textContent || "";
       btn.textContent = busy ? "Starting trial…" : btn.dataset.label;
     });
+    if (trialSubmit) {
+      trialSubmit.disabled = busy;
+      trialSubmit.textContent = busy ? "Starting trial…" : "Start trial";
+    }
   };
 
   setBusy(true);
@@ -90,7 +118,7 @@ async function startChunkTrial(trigger) {
     const response = await fetch("/api/license/trial", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify({ email }),
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok || !data.licenseKey) {
@@ -102,26 +130,49 @@ async function startChunkTrial(trigger) {
         licenseKey: data.licenseKey,
         expiresAt: data.expiresAt,
         product: data.product,
+        email,
+        emailSent: Boolean(data.emailSent),
       }),
     );
     window.location.assign("/trial-success.html");
   } catch (err) {
     const message =
       err instanceof Error ? err.message : "Trial could not be started.";
+    if (trialError) {
+      trialError.hidden = false;
+      trialError.textContent = message;
+    }
     if (status) {
       status.dataset.error = "1";
       status.hidden = false;
       status.textContent = message;
-    } else {
-      window.alert(message);
     }
     setBusy(false);
-    trigger?.focus?.();
+    trialEmail?.focus();
   }
 }
 
 document.querySelectorAll(".js-start-trial").forEach((btn) => {
-  btn.addEventListener("click", () => startChunkTrial(btn));
+  btn.addEventListener("click", () => openTrialDialog());
+});
+
+trialCancel?.addEventListener("click", () => closeTrialDialog());
+
+trialForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = String(trialEmail?.value || "").trim();
+  if (!email) {
+    if (trialError) {
+      trialError.hidden = false;
+      trialError.textContent = "Email is required.";
+    }
+    return;
+  }
+  if (trialError) {
+    trialError.hidden = true;
+    trialError.textContent = "";
+  }
+  await startChunkTrial(email);
 });
 
 if (isAdminEnabled()) {

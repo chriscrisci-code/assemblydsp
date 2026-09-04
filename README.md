@@ -42,4 +42,4 @@ Do **not** reuse Grove Plus price IDs — CHUNK has its own product/price.
 
 ## Trial
 
-The 14-day trial is a timed demo binary (not a Stripe subscription trial). The trial CTA stays email-based until a trial build is hosted.
+The 14-day trial requires an email. The site mints a license, shows the key, and emails it via Resend. Lost keys: `/support.html` → recover API.

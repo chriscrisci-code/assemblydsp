@@ -25,6 +25,7 @@
         <a href="#chunk" data-content="header.navChunk">CHUNK</a>
         <a href="#layers" data-content="header.navLayers">Layers</a>
         <a href="#pricing" data-content="header.navPricing">Pricing</a>
+        <a href="/support.html" data-content="header.navSupport">Support</a>
       </nav>
       <button type="button" class="header-cta js-buy-chunk" data-content="header.buy">Buy · $39</button>
     </header>
@@ -203,9 +204,34 @@
       <p class="footer-fine">
         © <span id="year"></span>
         <span data-content="footer.copyright">Assembly DSP. CHUNK is a trademark of Assembly DSP.</span>
+        <a class="footer-support" href="/support.html">Support</a>
         <span data-vst-line>VST is a trademark of Steinberg Media Technologies GmbH.</span>
       </p>
     </footer>
+
+    <dialog class="auth-dialog" id="trial-dialog" aria-labelledby="trial-title">
+      <form class="auth-form" id="trial-form">
+        <p class="eyebrow" id="trial-title">14-day trial</p>
+        <p class="auth-hint">
+          Enter your email so we can send your trial key — and resend it from Support if you need it later.
+        </p>
+        <label class="auth-label" for="trial-email">Email</label>
+        <input
+          id="trial-email"
+          class="auth-input"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+          placeholder="you@studio.com"
+        />
+        <p class="auth-error" id="trial-error" hidden></p>
+        <div class="cta-row">
+          <button type="submit" class="btn btn-primary" id="trial-submit">Start trial</button>
+          <button type="button" class="btn btn-ghost" id="trial-cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
 
     <dialog class="auth-dialog" id="auth-dialog" aria-labelledby="auth-title">
       <form class="auth-form" id="auth-form" method="dialog">
