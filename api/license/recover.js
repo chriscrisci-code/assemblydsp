@@ -64,6 +64,7 @@ export default async function handler(req, res) {
     }
 
     let sent = 0;
+    let lastError = "";
     for (const match of matches) {
       const result = await sendLicenseKeyEmail({
         to: emailRaw,
@@ -73,10 +74,14 @@ export default async function handler(req, res) {
         trialDays: TRIAL_DAYS,
       });
       if (result.ok) sent += 1;
-      else console.error("[license/recover] send", result.error);
+      else {
+        lastError = result.error || "send failed";
+        console.error("[license/recover] send", lastError);
+      }
     }
 
     if (sent === 0) {
+      console.error("[license/recover] all sends failed", lastError);
       sendJson(res, 502, {
         error: "Could not send email right now. Try again or contact support@assemblydsp.com.",
       });

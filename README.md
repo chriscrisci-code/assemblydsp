@@ -34,7 +34,7 @@ Static output is `dist/`. On Vercel, `/api/*` deploys as serverless functions. S
 Transactional email (Resend — send only; ImprovMX receives/forwards inbound):
 
 - `RESEND_API_KEY` — already used in Production if set
-- `EMAIL_FROM` — e.g. `Assembly DSP <support@assemblydsp.com>` (domain must be verified in Resend)
+- `EMAIL_FROM` — prefer bare `support@assemblydsp.com` on Vercel (avoid unquoted `Name <email>` which some UIs strip)
 
 See [`supabase/README.md`](supabase/README.md) to create the `licenses` tables.
 
