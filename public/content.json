@@ -32,9 +32,9 @@
   },
   "layers": {
     "eyebrow": "Three layers",
-    "headline": "Eight bands, built to move fast.",
+    "headline": "One graph. Three ways to shape it.",
     "eqName": "EQ",
-    "eqHeadline": "Eight bands of surgical tone",
+    "eqHeadline": "Eight bands, built to move fast.",
     "eqBody": "Bell, shelves, high and low pass, and plateau filters. Drag a node where you want it, shape the curve, or solo a band to hear exactly what you're working on.",
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
