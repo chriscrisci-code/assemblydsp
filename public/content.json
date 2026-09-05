@@ -14,14 +14,14 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "A multiband channel processor — Preamp, Saturation, Phase Alignment, EQ, Multiband Compressor, Multiband Spectral Resonance Suppressor, Brickwall Limiter / Clipper.",
+    "lede": "A multiband channel processor — Preamp, EQ, Multiband Compressor, Multiband Resonance Suppressor, Clipper.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
   "product": {
     "eyebrow": "Our first plugin",
-    "headline": "Start at the top.  A channel strip on steroids.",
-    "lede": "CHUNK stacks input saturations, phase alignment, an 8-band EQ, 6-band compressor, and a 4-band spectral resonance suppressor (RS) on a shared spectrum view — so you carve, control, and clean in one streamlined workflow.",
+    "headline": "Start at the top. A channel strip.",
+    "lede": "CHUNK stacks input saturations, phase alignment, an 8-band EQ, 6-band compressor, a 4-band spectral resonance suppressor (RS), stereo widener, and a brickwall limiter / clipper on a shared spectrum view — so you carve, control, and clean in one streamlined workflow.",
     "chainIn": "In",
     "chainHarmonics": "Harmonics",
     "chainEq": "EQ",
@@ -39,11 +39,11 @@
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
     "compHeadline": "Six-band dynamics with per-band sidechain and gate.",
-    "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain when you need to duck with intention.  ",
+    "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain per band..  ",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
     "rsHeadline": "Spectral frequency suppression to tame resonances.",
-    "rsBody": "RS splits each region into ~80 narrow log-spaced bands that compress independently — gain reduction traces the inverse of the spectrum for transparent leveling and resonance control.",
+    "rsBody": "RS lets you create up to 4 regions, and splits each region into ~80 narrow log-spaced bands that compress independently — gain reduction traces the inverse of the spectrum for transparent leveling and resonance control.  Each region has Threshold, Speed, and Ratio controls.",
     "rsAlt": "CHUNK RS window — resonance suppressor with spectral gain reduction"
   },
   "extras": {
