@@ -14,14 +14,14 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "A multiband channel processor — Preamp, EQ, Multiband Compressor, Multiband Resonance Suppressor, Clipper.",
+    "lede": "A multiband channel processor — Preamp, EQ, Multiband Compressor, Multiband Resonance Suppressor, Stereo Widener, Clipper.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
   "product": {
     "eyebrow": "Our first plugin",
     "headline": "Start at the top. A channel strip.",
-    "lede": "CHUNK stacks input saturations, phase alignment, an 8-band EQ, 6-band compressor, a 4-band spectral resonance suppressor (RS), stereo widener, and a brickwall limiter / clipper on a shared spectrum view — so you carve, control, and clean in one streamlined workflow.",
+    "lede": "CHUNK puts the tools you reach for across a channel into one place. Shape the input, EQ and compress, control resonances, adjust width, and finish the output — all built around a shared spectrum view.",
     "chainIn": "In",
     "chainHarmonics": "Harmonics",
     "chainEq": "EQ",
@@ -32,28 +32,28 @@
   },
   "layers": {
     "eyebrow": "Three layers",
-    "headline": "One graph. Ten jobs.",
+    "headline": "Eight bands, built to move fast.",
     "eqName": "EQ",
     "eqHeadline": "Eight bands of surgical tone",
-    "eqBody": "Bell, shelves, high/low pass, and plateau filters — drag nodes on the spectrum, and solo bands to hear the frequency you're working on.",
+    "eqBody": "Bell, shelves, high and low pass, and plateau filters. Drag a node where you want it, shape the curve, or solo a band to hear exactly what you're working on.",
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
     "compHeadline": "Six-band dynamics with per-band sidechain and gate.",
-    "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain per band..  ",
+    "compBody": "Threshold, ratio, attack, release, knee, range, and makeup are set independently for each band, with a gate and external sidechain available on each.",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
-    "rsHeadline": "Spectral frequency suppression to tame resonances.",
-    "rsBody": "RS lets you create up to 4 regions, and splits each region into ~80 narrow log-spaced bands that compress independently — gain reduction traces the inverse of the spectrum for transparent leveling and resonance control.  Each region has Threshold, Speed, and Ratio controls.",
+    "rsHeadline": "Find unwanted resonances. Pull them back.",
+    "rsBody": "Create up to four regions and RS splits each one into around 80 narrow bands. Those bands react independently, pulling down resonances as they appear without turning down the whole region.",
     "rsAlt": "CHUNK RS window — resonance suppressor with spectral gain reduction"
   },
   "extras": {
     "eyebrow": "Around the edges",
-    "headline": "Input color. Output polish.",
-    "item1": "Input & outputs both have saturation. Toggle even/odd harmonics.",
+    "headline": "A few more things built in.",
+    "item1": "Saturation at the input and output, with even/odd harmonic control",
     "item2": "Stereo width and continuous phase control",
-    "item3": "Output ceiling / brickwall for clean peaks",
-    "item4": "Live spectrum analyzer under every layer",
-    "item5": "VST3 for Windows (macOS AU coming later)"
+    "item3": "Output ceiling and brickwall clipping",
+    "item4": "Live spectrum analyzer throughout",
+    "item5": "VST3 for Windows. macOS AU coming later."
   },
   "pricing": {
     "eyebrow": "Get CHUNK",
