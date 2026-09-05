@@ -14,14 +14,14 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "A multiband channel processor — EQ, COMP, and spectral RS sharing one frequency graph.",
+    "lede": "A multiband channel processor — Preamp, Saturation, Phase Alignment, EQ, Multiband Compressor, Multiband Spectral Resonance Suppressor, Brickwall Limiter / Clipper.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
   "product": {
     "eyebrow": "Our first plugin",
-    "headline": "Start at the top and shape the whole channel without leaving the graph.",
-    "lede": "CHUNK stacks input saturations, phase alignment, an 8-band EQ, 6-band compressor, and a split-band spectral resonance suppressor (RS) on a shared spectrum view — so you carve, control, and clean in the same place.",
+    "headline": "Start at the top.  A channel strip on steroids.",
+    "lede": "CHUNK stacks input saturations, phase alignment, an 8-band EQ, 6-band compressor, and a 4-band spectral resonance suppressor (RS) on a shared spectrum view — so you carve, control, and clean in one streamlined workflow.",
     "chainIn": "In",
     "chainHarmonics": "Harmonics",
     "chainEq": "EQ",
@@ -32,14 +32,14 @@
   },
   "layers": {
     "eyebrow": "Three layers",
-    "headline": "One graph. Three jobs.",
+    "headline": "One graph. Ten jobs.",
     "eqName": "EQ",
     "eqHeadline": "Eight bands of surgical tone",
-    "eqBody": "Bell, shelves, high/low pass, and plateau filters — drag nodes on the spectrum, solo bands, and sculpt without jumping between plugins.",
+    "eqBody": "Bell, shelves, high/low pass, and plateau filters — drag nodes on the spectrum, and solo bands to hear the frequency you're working on.",
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
     "compHeadline": "Six-band dynamics with per-band sidechain and gate.",
-    "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain when you need to duck with intention.",
+    "compBody": "Threshold, ratio, attack, release, knee, makeup, range, and gate per region — plus external sidechain when you need to duck with intention.  ",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
     "rsHeadline": "Spectral frequency suppression to tame resonances.",
@@ -49,7 +49,7 @@
   "extras": {
     "eyebrow": "Around the edges",
     "headline": "Input color. Output polish.",
-    "item1": "Input & output harmonic drive with even/odd balance",
+    "item1": "Input & outputs both have saturation. Toggle even/odd harmonics.",
     "item2": "Stereo width and continuous phase control",
     "item3": "Output ceiling / brickwall for clean peaks",
     "item4": "Live spectrum analyzer under every layer",
@@ -68,7 +68,7 @@
   },
   "footer": {
     "logo": "Assembly DSP",
-    "tag": "Audio plugins, assembled.",
+    "tag": "Home of the CHUNK.  More on the way.",
     "copyright": "Assembly DSP. CHUNK is a trademark of Assembly DSP.",
     "vst": "VST is a trademark of Steinberg Media Technologies GmbH."
   }
