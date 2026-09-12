@@ -25,7 +25,7 @@ Do **not** put the service role key in frontend code.
 - **Trial:** Site **Start free trial** → `POST /api/license/trial` → `trial-success.html` (key + signed download)
 - **Paid:** Stripe `checkout.session.completed` → webhook mints license (`expires_at` null, long plugin token) → `success.html` (key + download)
 - **Download:** `GET /api/download?session_id=` or `?license_key=` → short-lived redirect to the current zip from `chunk-current.json` (or `CHUNK_BUILD_URL` if pinned)
-- **Current build:** `GET /api/build` → `{ product, version, filename }` for the site footer and download labels
+- **Current build:** public `chunk-current.json` in `plugin-builds` — footer and download labels read it in the browser
 - **Manual:** Admin (local `ENABLE_ADMIN=true`) → Grant license → copy key
 - **Plugin:** CHUNK → License → paste key → Activate → caches token under `%AppData%/Assembly DSP/CHUNK/license.json`
 - **Email:** Resend sends trial/purchase/recover keys when `RESEND_API_KEY` + `EMAIL_FROM` are set (inbound mail stays on ImprovMX)

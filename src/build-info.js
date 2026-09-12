@@ -1,17 +1,32 @@
+const CHUNK_CURRENT_JSON =
+  "https://qtfjgaysjfkipfdiaeyc.supabase.co/storage/v1/object/public/plugin-builds/chunk-current.json";
+
+function versionFromFilename(filename) {
+  const stem = String(filename || "").replace(/\.(zip|vst3)$/i, "");
+  const match = stem.match(/(\d+\.\d+\.\d+(?:[-.][A-Za-z0-9]+)*)$/);
+  return match ? match[1] : "";
+}
+
 /**
  * Public current CHUNK build for download buttons and the footer.
+ * Reads plugin-builds/chunk-current.json directly (no serverless function).
  * @returns {Promise<{ product: string, version: string, filename: string, releasedAt: string | null } | null>}
  */
 export async function loadCurrentBuild() {
   try {
-    const response = await fetch("/api/build", { cache: "no-store" });
+    const response = await fetch(CHUNK_CURRENT_JSON, { cache: "no-store" });
     if (!response.ok) return null;
     const data = await response.json();
     if (!data || typeof data !== "object") return null;
+    const filename = String(data.filename || "").trim();
+    const version =
+      String(data.version || "").trim() ||
+      versionFromFilename(filename) ||
+      versionFromFilename(String(data.url || ""));
     return {
       product: String(data.product || "chunk"),
-      version: String(data.version || "").trim(),
-      filename: String(data.filename || "").trim(),
+      version,
+      filename,
       releasedAt: data.releasedAt ? String(data.releasedAt) : null,
     };
   } catch {

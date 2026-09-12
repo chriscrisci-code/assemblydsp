@@ -55,7 +55,7 @@ Each release:
 1. Upload `CHUNK-x.y.z.zip` to the `plugin-builds` bucket
 2. Update `chunk-current.json` (`version`, `filename`, `url`, `releasedAt`)
 
-`GET /api/build` returns `{ product, version, filename, releasedAt }` (cached ~60s). Download buttons, the homepage/support footer, and license emails all use that. `GET /api/download` also includes `version` and `filename`.
+The homepage/support footer and download buttons read that JSON in the browser. License emails and `GET /api/download` still resolve the current zip on the server via `lib/build.js`.
 
 Optional env pins (leave unset to follow the manifest):
 
