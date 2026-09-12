@@ -51,11 +51,14 @@
           <a class="btn btn-ghost" href="/">Back to Assembly DSP</a>
           <a class="btn btn-ghost" href="/#layers">See the layers</a>
         </div>
+        <p class="download-hint" id="download-hint" hidden></p>
         <p class="success-session" id="download-status" role="status"></p>
       </div>
     </main>
 
     <script type="module">
+      import { applyDownloadButton, loadCurrentBuild } from "./src/build-info.js";
+
       const params = new URLSearchParams(window.location.search);
       const sessionId = params.get("session_id");
       const line = document.getElementById("session-line");
@@ -63,7 +66,9 @@
       const statusEl = document.getElementById("license-status");
       const copyBtn = document.getElementById("copy-key");
       const downloadBtn = document.getElementById("download-btn");
+      const downloadHint = document.getElementById("download-hint");
       const downloadStatus = document.getElementById("download-status");
+      loadCurrentBuild().then((build) => applyDownloadButton(downloadBtn, downloadHint, build));
 
       if (sessionId && line) {
         line.hidden = false;
@@ -84,6 +89,7 @@
             if (!response.ok || !body.url) {
               throw new Error(body.error || "Download not available yet.");
             }
+            applyDownloadButton(downloadBtn, downloadHint, body);
             window.location.assign(body.url);
             downloadStatus.textContent = "";
           } catch (err) {

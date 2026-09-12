@@ -56,17 +56,22 @@
           <a class="btn btn-ghost" href="/#pricing">Buy full license</a>
           <a class="btn btn-ghost" href="/">Back to site</a>
         </div>
+        <p class="download-hint" id="download-hint" hidden></p>
         <p class="success-session" id="download-status" role="status"></p>
       </div>
     </main>
 
     <script type="module">
+      import { applyDownloadButton, loadCurrentBuild } from "./src/build-info.js";
+
       const STORAGE = "assemblydsp_trial";
       const keyEl = document.getElementById("license-key");
       const statusEl = document.getElementById("license-status");
       const copyBtn = document.getElementById("copy-key");
       const downloadBtn = document.getElementById("download-btn");
+      const downloadHint = document.getElementById("download-hint");
       const downloadStatus = document.getElementById("download-status");
+      loadCurrentBuild().then((build) => applyDownloadButton(downloadBtn, downloadHint, build));
 
       function readTrial() {
         try {
@@ -109,6 +114,7 @@
             if (!response.ok || !body.url) {
               throw new Error(body.error || "Download not available yet.");
             }
+            applyDownloadButton(downloadBtn, downloadHint, body);
             window.location.assign(body.url);
             downloadStatus.textContent = "";
           } catch (err) {

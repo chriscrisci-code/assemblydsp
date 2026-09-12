@@ -629,6 +629,24 @@ img {
   color: rgba(74, 106, 112, 0.95);
 }
 
+.footer-build {
+  display: inline;
+  margin: 0 0.35rem;
+  color: rgba(74, 106, 112, 0.95);
+}
+
+.footer-build:not([hidden])::before,
+.footer-build:not([hidden])::after {
+  content: "·";
+  margin: 0 0.35rem;
+}
+
+.download-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
 /* Success */
 .success-page {
   min-height: 100svh;

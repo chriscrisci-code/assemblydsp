@@ -1,6 +1,6 @@
+import { getCurrentBuild, publicBuildInfo } from "../lib/build.js";
 import {
   authorizeDownload,
-  chunkBuildUrl,
   isDownloadConfigured,
   issueDownloadToken,
   verifyDownloadToken,
@@ -61,8 +61,9 @@ export default async function handler(req, res) {
         sendJson(res, 403, { error: "Download link expired. Request a new one." });
         return;
       }
+      const build = await getCurrentBuild();
       res.statusCode = 302;
-      res.setHeader("Location", chunkBuildUrl());
+      res.setHeader("Location", build.url);
       res.setHeader("Cache-Control", "no-store");
       res.end();
       return;
@@ -88,10 +89,12 @@ export default async function handler(req, res) {
       return;
     }
 
+    const build = await getCurrentBuild();
     sendJson(res, 200, {
       url: path,
       expiresInSeconds: 15 * 60,
       product: auth.product,
+      ...publicBuildInfo(build),
     });
   } catch (err) {
     console.error("[download]", err);

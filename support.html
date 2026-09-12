@@ -85,7 +85,19 @@
       </div>
     </main>
 
+    <footer class="site-footer">
+      <p class="footer-fine">
+        Assembly DSP
+        <span id="chunk-build" class="footer-build" hidden></span>
+      </p>
+    </footer>
+
     <script type="module">
+      import { applyFooterBuild, loadCurrentBuild } from "./src/build-info.js";
+      loadCurrentBuild().then((build) => {
+        applyFooterBuild(document.getElementById("chunk-build"), build);
+      });
+
       const form = document.getElementById("recover-form");
       const emailInput = document.getElementById("recover-email");
       const errorEl = document.getElementById("recover-error");

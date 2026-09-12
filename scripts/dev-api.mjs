@@ -13,6 +13,7 @@ import trial from "../api/license/trial.js";
 import recover from "../api/license/recover.js";
 import emailStatus from "../api/license/email-status.js";
 import download from "../api/download.js";
+import build from "../api/build.js";
 import { handleAdminRequest } from "../lib/admin.js";
 
 const port = Number(process.env.API_PORT || 8787);
@@ -26,6 +27,7 @@ const routes = {
   "/api/license/recover": recover,
   "/api/license/email-status": emailStatus,
   "/api/download": download,
+  "/api/build": build,
 };
 
 const server = createServer(async (req, res) => {
