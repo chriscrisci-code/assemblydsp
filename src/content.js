@@ -7,9 +7,19 @@ const LETTER_CLASSES = ["c-teal", "c-eq", "c-comp", "c-rs", "c-teal"];
 export function applySiteContent(content) {
   const data = mergeContent(content);
 
-  if (data.meta?.title) document.title = data.meta.title;
-  const desc = document.querySelector('meta[name="description"]');
-  if (desc && data.meta?.description) desc.setAttribute("content", data.meta.description);
+  if (data.meta?.title) {
+    document.title = data.meta.title;
+    document
+      .querySelectorAll('meta[property="og:title"], meta[name="twitter:title"]')
+      .forEach((el) => el.setAttribute("content", data.meta.title));
+  }
+  if (data.meta?.description) {
+    document
+      .querySelectorAll(
+        'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]',
+      )
+      .forEach((el) => el.setAttribute("content", data.meta.description));
+  }
 
   document.querySelectorAll("[data-content]").forEach((el) => {
     const value = getPath(data, el.dataset.content);
