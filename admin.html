@@ -30,7 +30,8 @@
         </h2>
         <p class="section-lede">
           Mint a CHUNK key for anyone (comps, beta, yourself). The plaintext key is shown
-          once — copy it before you leave this page.
+          once — copy it before you leave this page. Public trials are
+          <strong>30 days</strong>.
         </p>
         <form id="grant-form" class="admin-form">
           <label class="admin-label">
@@ -54,6 +55,33 @@
           <p class="auth-label">License key (copy now)</p>
           <p class="license-key" id="grant-key"></p>
           <button type="button" class="btn btn-ghost" id="grant-copy">Copy key</button>
+        </div>
+      </section>
+
+      <section class="admin-licenses" id="licenses-section">
+        <h2 class="admin-section">Licenses</h2>
+        <p class="section-lede">
+          Trials and purchases from Supabase. Full keys are not shown — last four characters only.
+        </p>
+        <p class="admin-status" id="licenses-status" hidden role="status"></p>
+        <div class="admin-licenses-window">
+          <table class="admin-licenses-table">
+            <thead>
+              <tr>
+                <th>Email</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th>Expires</th>
+                <th>Key</th>
+              </tr>
+            </thead>
+            <tbody id="licenses-body">
+              <tr>
+                <td colspan="6">Loading…</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 

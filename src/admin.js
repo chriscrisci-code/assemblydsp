@@ -118,6 +118,7 @@ grantForm?.addEventListener("submit", async (event) => {
     setGrantStatus(`Granted for ${data.email}. Copy the key below.`);
     if (grantKey) grantKey.textContent = data.licenseKey;
     if (grantResult) grantResult.hidden = false;
+    loadLicenses();
     if (grantCopy) {
       grantCopy.textContent = "Copy key";
       grantCopy.onclick = async () => {
@@ -130,6 +131,78 @@ grantForm?.addEventListener("submit", async (event) => {
   }
 });
 
+function formatWhen(value) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+  return date.toLocaleDateString();
+}
+
+async function loadLicenses() {
+  const body = document.getElementById("licenses-body");
+  const status = document.getElementById("licenses-status");
+  if (!body) return;
+
+  const setLicenseStatus = (message, isError = false) => {
+    if (!status) return;
+    status.hidden = !message;
+    status.textContent = message || "";
+    status.dataset.error = isError ? "1" : "";
+  };
+
+  try {
+    const response = await fetch("/api/admin/licenses", { credentials: "same-origin" });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || "Could not load licenses.");
+    }
+    const rows = Array.isArray(data.licenses) ? data.licenses : [];
+    const trialDays = data.trialDays || 30;
+    setLicenseStatus(
+      rows.length
+        ? `${rows.length} license${rows.length === 1 ? "" : "s"} · public trial is ${trialDays} days.`
+        : `No licenses yet. Public trial is ${trialDays} days.`,
+    );
+    if (!rows.length) {
+      body.replaceChildren();
+      const empty = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = 6;
+      cell.textContent = "No rows in Supabase yet.";
+      empty.appendChild(cell);
+      body.appendChild(empty);
+      return;
+    }
+    body.replaceChildren();
+    for (const row of rows) {
+      const tr = document.createElement("tr");
+      const cells = [
+        row.email || "—",
+        row.licenseType || row.source || "—",
+        row.status || "—",
+        formatWhen(row.createdAt),
+        formatWhen(row.expiresAt),
+        row.last4 ? `…${row.last4}` : "—",
+      ];
+      cells.forEach((text) => {
+        const td = document.createElement("td");
+        td.textContent = text;
+        tr.appendChild(td);
+      });
+      body.appendChild(tr);
+    }
+  } catch (err) {
+    setLicenseStatus(err instanceof Error ? err.message : "Could not load licenses.", true);
+    body.replaceChildren();
+    const empty = document.createElement("tr");
+    const cell = document.createElement("td");
+    cell.colSpan = 6;
+    cell.textContent = "Could not load licenses.";
+    empty.appendChild(cell);
+    body.appendChild(empty);
+  }
+}
+
 async function bootAdmin() {
   if (!isAdminEnabled()) {
     window.location.replace("/");
@@ -137,6 +210,7 @@ async function bootAdmin() {
   }
   const ok = await requireSession();
   if (!ok) return;
+  loadLicenses();
   try {
     const response = await fetch("/api/admin/content", { credentials: "same-origin" });
     const data = await response.json();

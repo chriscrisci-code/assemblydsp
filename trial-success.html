@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta
       name="description"
-      content="Your CHUNK 14-day trial license key and download."
+      content="Your CHUNK 30-day trial license key and download."
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,11 +31,11 @@
 
     <main class="success-page">
       <div class="success-inner">
-        <p class="eyebrow">14-day trial</p>
+        <p class="eyebrow">30-day trial</p>
         <h1 class="success-title">You’re set.</h1>
         <p class="section-lede">
           Install CHUNK, open it in your DAW, then paste this key under
-          <strong>License → Activate</strong>. Full DSP for 14 days — then buy to keep going.
+          <strong>License → Activate</strong>. Full DSP for 30 days — then buy to keep going.
           We also email this key to you — check spam if you don’t see it. Lost it later?
           <a href="/support.html">Recover it on Support</a>.
         </p>
@@ -96,7 +96,7 @@
         keyEl.textContent = data.licenseKey;
         const exp = data.expiresAt
           ? `Expires ${new Date(data.expiresAt).toLocaleString()}.`
-          : "Valid for 14 days after activation.";
+          : "Valid for 30 days after activation.";
         statusEl.textContent = exp;
         copyBtn.hidden = false;
         copyBtn.onclick = async () => {

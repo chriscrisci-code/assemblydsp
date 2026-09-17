@@ -994,7 +994,7 @@ img {
 }
 
 .admin-page {
-  max-width: 44rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: calc(5.5rem + env(safe-area-inset-top)) var(--pad) 4rem;
 }
@@ -1079,6 +1079,43 @@ img {
 
 .admin-grant {
   margin-bottom: 1rem;
+}
+
+.admin-licenses-window {
+  margin-top: 1.25rem;
+  max-height: 22rem;
+  overflow: auto;
+  border: 1px solid rgba(74, 106, 112, 0.28);
+  background: rgba(7, 10, 11, 0.45);
+}
+
+.admin-licenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.admin-licenses-table th,
+.admin-licenses-table td {
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(74, 106, 112, 0.2);
+  white-space: nowrap;
+}
+
+.admin-licenses-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-deep);
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+}
+
+.admin-licenses-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

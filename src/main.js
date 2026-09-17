@@ -66,7 +66,7 @@ document.querySelectorAll(".js-buy-chunk").forEach((btn) => {
   btn.addEventListener("click", () => startChunkCheckout(btn));
 });
 
-/** Mint a 14-day trial license (requires email) and open the success page. */
+/** Mint a 30-day trial license (requires email) and open the success page. */
 const trialDialog = document.getElementById("trial-dialog");
 const trialForm = document.getElementById("trial-form");
 const trialEmail = document.getElementById("trial-email");
@@ -176,66 +176,17 @@ trialForm?.addEventListener("submit", async (event) => {
 });
 
 if (isAdminEnabled()) {
-  const authDialog = document.getElementById("auth-dialog");
-  const authForm = document.getElementById("auth-form");
-  const authError = document.getElementById("auth-error");
-  const authPassword = document.getElementById("auth-password");
-  const authCancel = document.getElementById("auth-cancel");
-
-  function openAuth() {
-    if (!authDialog) return;
-    if (authError) {
-      authError.hidden = true;
-      authError.textContent = "";
-    }
-    if (typeof authDialog.showModal === "function") authDialog.showModal();
-    else authDialog.setAttribute("open", "");
-    authPassword?.focus();
-  }
-
-  function closeAuth() {
-    if (!authDialog) return;
-    if (typeof authDialog.close === "function") authDialog.close();
-    else authDialog.removeAttribute("open");
-  }
-
+  document.getElementById("auth-dialog")?.remove();
+  const openAdmin = (event) => {
+    event?.preventDefault();
+    window.location.assign("/admin.html");
+  };
   document.addEventListener("click", (event) => {
     const trigger = event.target.closest(".secret-t");
     if (!trigger) return;
-    event.preventDefault();
-    openAuth();
+    openAdmin(event);
   });
-
-  authCancel?.addEventListener("click", () => closeAuth());
-
-  authForm?.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (authError) {
-      authError.hidden = true;
-      authError.textContent = "";
-    }
-    try {
-      const response = await fetch("/api/admin/login", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password: authPassword?.value || "" }),
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        throw new Error(data.error || "Wrong password.");
-      }
-      window.location.assign("/admin.html");
-    } catch (err) {
-      if (authError) {
-        authError.hidden = false;
-        authError.textContent =
-          err instanceof Error ? err.message : "Wrong password.";
-      }
-    }
-  });
-
-  if (window.location.hash === "#admin") openAuth();
+  if (window.location.hash === "#admin") openAdmin();
 } else {
   document.getElementById("auth-dialog")?.remove();
 }

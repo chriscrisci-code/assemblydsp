@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
     const minted = await createTrialLicense({
       email: emailRaw,
-      note: body.note || "14-day free trial",
+      note: body.note || "30-day free trial",
       clientKey,
     });
 

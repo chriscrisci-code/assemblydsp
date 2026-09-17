@@ -42,7 +42,7 @@ Do **not** reuse Grove Plus price IDs — CHUNK has its own product/price.
 
 ## Trial
 
-The 14-day trial requires an email. The site mints a license, shows the key, and emails it via Resend. Lost keys: `/support.html` → recover API.
+The 30-day trial requires an email. The site mints a license, shows the key, and emails it via Resend. Lost keys: `/support.html` → recover API.
 
 ## Current build version
 
