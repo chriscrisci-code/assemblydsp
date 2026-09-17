@@ -7,6 +7,7 @@
     "logo": "Assembly DSP",
     "navChunk": "CHUNK",
     "navLayers": "Layers",
+    "navCompare": "Compare",
     "navPricing": "Pricing",
     "navSupport": "Support",
     "buy": "Buy · $39"
@@ -53,7 +54,22 @@
     "item2": "Stereo width and continuous phase control",
     "item3": "Output ceiling and brickwall clipping",
     "item4": "Live spectrum analyzer throughout",
-    "item5": "VST3 for Windows. macOS AU coming later."
+    "item5": "VST3 for Windows. macOS AU coming later.",
+    "inAlt": "CHUNK input page — level, harmonics, gain, and phase",
+    "outAlt": "CHUNK output page — level, brickwall limiter, width, and harmonics"
+  },
+  "compare": {
+    "eyebrow": "One plugin. The whole channel.",
+    "headline": "The channel strip grew up.",
+    "lede": "Traditional strips give you EQ, compression, and a gate. CHUNK keeps that one-window workflow and adds multiband, spectral, and resonance tools — without assembling a chain.",
+    "noteDeess": "CHUNK de-essing is via a high COMP band or an RS region, not a dedicated de-esser module.",
+    "noteFabMb": "FabFilter Mixing Bundle includes Saturn 2 (multiband saturation) and Pro-Q 4, but not Pro-MB.",
+    "noteFabRs": "Pro-Q 4 Spectral Dynamics can treat varying problem frequencies. It is not a dedicated automatic resonance-suppression module.",
+    "notePrice": "Prices are manufacturer regular / MSRP. Sale prices vary; Waves regularly discounts Scheps Omni Channel 2.",
+    "closeKicker": "CHUNK",
+    "closePrice": "$39",
+    "closeLine": "One plugin. One window. The whole channel.",
+    "closeLede": "Everything you need to shape a channel without building a plugin chain."
   },
   "pricing": {
     "eyebrow": "Get CHUNK",
