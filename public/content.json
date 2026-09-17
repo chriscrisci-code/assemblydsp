@@ -21,8 +21,8 @@
   },
   "product": {
     "eyebrow": "Our first plugin",
-    "headline": "Start at the top. A channel strip.",
-    "lede": "CHUNK puts the tools you reach for across a channel into one place. Shape the input, EQ and compress, control resonances, adjust width, and finish the output — all built around a shared spectrum view.",
+    "headline": "Starting at the top, we made a channel strip.",
+    "lede": "CHUNK puts the tools you reach for across a channel into one place. Input preamp with saturation, 180 degree variable phase rotation, EQ, multi-band compressor, resonance control, stereo widener, and brick wall limiter / clipper.",
     "chainIn": "In",
     "chainHarmonics": "Harmonics",
     "chainEq": "EQ",
@@ -32,7 +32,7 @@
     "chainOut": "Out"
   },
   "layers": {
-    "eyebrow": "Three layers",
+    "eyebrow": "Three process layers",
     "headline": "One graph. Three ways to shape it.",
     "eqName": "EQ",
     "eqHeadline": "Eight bands, built to move fast.",
@@ -40,7 +40,7 @@
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
     "compHeadline": "Six-band dynamics with per-band sidechain and gate.",
-    "compBody": "Threshold, ratio, attack, release, knee, range, and makeup are set independently for each band, with a gate and external sidechain available on each.",
+    "compBody": "Threshold, ratio, attack, release, knee, range, and makeup are set independently for each band, with a gate and sidechain, which can be set, per band, to external, or internal, including other bands.",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
     "rsHeadline": "Find unwanted resonances. Pull them back.",
