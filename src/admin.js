@@ -151,13 +151,16 @@ async function loadLicenses() {
   };
 
   try {
-    const response = await fetch("/api/admin/licenses", { credentials: "same-origin" });
+    const response = await fetch("/api/admin/session", { credentials: "same-origin" });
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
       throw new Error(data.error || "Could not load licenses.");
     }
     const rows = Array.isArray(data.licenses) ? data.licenses : [];
     const trialDays = data.trialDays || 30;
+    if (data.licensesError && !rows.length) {
+      throw new Error(data.licensesError);
+    }
     setLicenseStatus(
       rows.length
         ? `${rows.length} license${rows.length === 1 ? "" : "s"} · public trial is ${trialDays} days.`
