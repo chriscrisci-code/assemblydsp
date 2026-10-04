@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "CHUNK VST3 — Multiband Channel Strip | Assembly DSP",
-    "description": "CHUNK is a Windows VST3 multiband channel strip from Assembly DSP. EQ, compressor, and spectral RS on one graph. $39 launch price. 30-day free trial."
+    "description": "Windows VST3 channel strip. EQ, compressor, RS. $39. 30-day trial."
   },
   "header": {
     "logo": "Assembly DSP",
@@ -15,14 +15,14 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "A multiband channel processor — Preamp, EQ, Multiband Compressor, Multiband Resonance Suppressor, Stereo Widener, Clipper.",
+    "lede": "EQ, compressor, and resonance suppressor. One graph.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
   "product": {
-    "eyebrow": "Our first plugin",
-    "headline": "Starting at the top, we made a channel strip.",
-    "lede": "CHUNK puts the tools you reach for across a channel into one place. Input preamp with saturation, 180 degree variable phase rotation, EQ, multi-band compressor, resonance control, stereo widener, and brick wall limiter / clipper.",
+    "eyebrow": "CHUNK",
+    "headline": "A channel strip.",
+    "lede": "",
     "chainIn": "In",
     "chainHarmonics": "Harmonics",
     "chainEq": "EQ",
@@ -32,59 +32,59 @@
     "chainOut": "Out"
   },
   "layers": {
-    "eyebrow": "Three process layers",
-    "headline": "One graph. Three ways to shape it.",
+    "eyebrow": "Layers",
+    "headline": "EQ, COMP, and RS.",
     "eqName": "EQ",
-    "eqHeadline": "Eight bands, built to move fast.",
-    "eqBody": "Bell, shelves, high and low pass, and plateau filters. Drag a node where you want it, shape the curve, or solo a band to hear exactly what you're working on.",
+    "eqHeadline": "Eight bands.",
+    "eqBody": "Drag a node, shape it, solo it.",
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
-    "compHeadline": "Six-band dynamics with per-band sidechain and gate.",
-    "compBody": "Threshold, ratio, attack, release, knee, range, and makeup are set independently for each band, with a gate and sidechain, which can be set, per band, to external, or internal, including other bands.",
+    "compHeadline": "Six bands.",
+    "compBody": "Gate and sidechain on each. External, or another band.",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
-    "rsHeadline": "Find unwanted resonances. Pull them back.",
-    "rsBody": "Create up to four regions and RS splits each one into around 80 narrow bands. Those bands react independently, pulling down resonances as they appear without turning down the whole region.",
+    "rsHeadline": "Resonance.",
+    "rsBody": "Up to four regions. Each splits into about 80 narrow bands and pulls resonances as they show up.",
     "rsAlt": "CHUNK RS window — resonance suppressor with spectral gain reduction"
   },
   "extras": {
-    "eyebrow": "Around the edges",
-    "headline": "A few more things built in.",
-    "item1": "Saturation at the input and output, with even/odd harmonic control",
-    "item2": "Stereo width and continuous phase control",
-    "item3": "Output ceiling and brickwall clipping",
-    "item4": "Live spectrum analyzer throughout",
-    "item5": "VST3 for Windows. macOS AU coming later.",
+    "eyebrow": "",
+    "headline": "Also included.",
+    "item1": "In/out saturation (even/odd)",
+    "item2": "Width and phase",
+    "item3": "Ceiling / clipper",
+    "item4": "Spectrum on every page",
+    "item5": "Windows VST3. Mac later.",
     "inAlt": "CHUNK input page — level, harmonics, gain, and phase",
     "outAlt": "CHUNK output page — level, brickwall limiter, width, and harmonics"
   },
   "compare": {
-    "eyebrow": "One plugin. The whole channel.",
-    "headline": "The channel strip grew up.",
-    "lede": "Traditional strips give you EQ, compression, and a gate. CHUNK keeps that one-window workflow and adds multiband, spectral, and resonance tools — without assembling a chain.",
+    "eyebrow": "Compare",
+    "headline": "How it stacks up.",
+    "lede": "",
     "noteDeess": "CHUNK de-essing is via a high COMP band or an RS region, not a dedicated de-esser module.",
     "noteFabMb": "FabFilter Mixing Bundle includes Saturn 2 (multiband saturation) and Pro-Q 4, but not Pro-MB.",
     "noteFabRs": "Pro-Q 4 Spectral Dynamics can treat varying problem frequencies. It is not a dedicated automatic resonance-suppression module.",
     "notePrice": "Prices are manufacturer regular / MSRP. Sale prices vary; Waves regularly discounts Scheps Omni Channel 2.",
     "closeKicker": "CHUNK",
     "closePrice": "$39",
-    "closeLine": "One plugin. One window. The whole channel.",
-    "closeLede": "Everything you need to shape a channel without building a plugin chain."
+    "closeLine": "",
+    "closeLede": ""
   },
   "pricing": {
     "eyebrow": "Get CHUNK",
-    "headline": "Launch pricing.",
-    "lede": "Full license, 30-day free trial — no commitment while you put it on real sessions.",
+    "headline": "$39",
+    "lede": "",
     "was": "$79",
     "now": "$39",
-    "note": "Launch offer · Regular price $79 · 30-day free trial",
+    "note": "Launch price. Regular $79. 30-day trial.",
     "trial": "Start 30-day trial",
     "buy": "Buy CHUNK — $39",
     "contactEmail": "support@assemblydsp.com"
   },
   "footer": {
     "logo": "Assembly DSP",
-    "tag": "Home of the CHUNK.  More on the way.",
+    "tag": "Home of the CHUNK. More on the way.",
     "copyright": "Assembly DSP. CHUNK is a trademark of Assembly DSP.",
     "vst": "VST is a trademark of Steinberg Media Technologies GmbH."
   }

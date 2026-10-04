@@ -24,7 +24,9 @@ export function applySiteContent(content) {
   document.querySelectorAll("[data-content]").forEach((el) => {
     const value = getPath(data, el.dataset.content);
     if (value == null) return;
-    el.textContent = String(value);
+    const text = String(value);
+    el.textContent = text;
+    el.hidden = text.trim() === "";
   });
 
   document.querySelectorAll("[data-content-alt]").forEach((el) => {

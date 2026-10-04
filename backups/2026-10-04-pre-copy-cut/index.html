@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHUNK VST3 — Multiband Channel Strip | Assembly DSP</title>
+    <meta
+      name="description"
+      content="CHUNK is a Windows VST3 multiband channel strip from Assembly DSP. EQ, compressor, and spectral RS on one graph. $39 launch price. 30-day free trial."
+    />
+    <link rel="canonical" href="https://www.assemblydsp.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0b1416" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Assembly DSP" />
+    <meta property="og:title" content="CHUNK VST3 — Multiband Channel Strip | Assembly DSP" />
+    <meta
+      property="og:description"
+      content="CHUNK is a Windows VST3 multiband channel strip from Assembly DSP. EQ, compressor, and spectral RS on one graph. $39 launch. 30-day free trial."
+    />
+    <meta property="og:url" content="https://www.assemblydsp.com/" />
+    <meta property="og:image" content="https://www.assemblydsp.com/images/chunk-eq.png" />
+    <meta property="og:image:alt" content="CHUNK EQ window — multiband equalizer with spectrum graph" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CHUNK VST3 — Multiband Channel Strip | Assembly DSP" />
+    <meta
+      name="twitter:description"
+      content="CHUNK is a Windows VST3 multiband channel strip from Assembly DSP. EQ, compressor, and spectral RS on one graph."
+    />
+    <meta name="twitter:image" content="https://www.assemblydsp.com/images/chunk-eq.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "name": "Assembly DSP",
+            "url": "https://www.assemblydsp.com",
+            "logo": "https://www.assemblydsp.com/images/assembly-dsp-logo.png",
+            "email": "support@assemblydsp.com",
+            "description": "Audio plugins, assembled."
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "CHUNK",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Windows",
+            "url": "https://www.assemblydsp.com/",
+            "description": "Windows VST3 multiband channel strip with EQ, compressor, and spectral RS on one graph.",
+            "offers": {
+              "@type": "Offer",
+              "price": "39.00",
+              "priceCurrency": "USD"
+            },
+            "brand": { "@type": "Brand", "name": "Assembly DSP" }
+          }
+        ]
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="logo" href="#top" aria-label="Assembly DSP">
+        <img src="/images/assembly-dsp-mark.png" alt="" width="51" height="28" />
+        <span>Assembly DSP</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#chunk" data-content="header.navChunk">CHUNK</a>
+        <a href="#layers" data-content="header.navLayers">Layers</a>
+        <a href="#compare" data-content="header.navCompare">Compare</a>
+        <a href="#pricing" data-content="header.navPricing">Pricing</a>
+        <a href="/support.html" data-content="header.navSupport">Support</a>
+      </nav>
+      <button type="button" class="header-cta js-buy-chunk" data-content="header.buy">Buy · $39</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="brand">
+        <div class="hero-visual" aria-hidden="true">
+          <canvas id="spectrum" width="1600" height="900"></canvas>
+          <div class="hero-fade"></div>
+        </div>
+
+        <div class="hero-copy">
+          <p class="brand" id="brand" data-content="hero.brand">Assembly DSP</p>
+          <h1 class="chunk-mark" aria-label="CHUNK">
+            <span class="c-teal">C</span><span class="c-eq">H</span><span class="c-comp">U</span><span class="c-rs">N</span><span class="c-teal">K</span>
+          </h1>
+          <p class="lede" data-content="hero.lede">
+            A multiband channel processor — EQ, COMP, and spectral RS sharing one frequency graph.
+          </p>
+          <div class="cta-row">
+            <button type="button" class="btn btn-primary js-start-trial" data-content="hero.ctaTrial">Start free trial</button>
+            <a class="btn btn-ghost" href="#chunk" data-content="hero.ctaLearn">See what it does</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section product" id="chunk">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="product.eyebrow">The first plugin</p>
+          <h2 data-content="product.headline">Shape the whole channel without leaving the graph.</h2>
+          <p class="section-lede" data-content="product.lede">
+            CHUNK stacks an 8-band EQ, 6-band compressor, and a split-band spectral compressor (RS)
+            on a shared spectrum view — so you carve, control, and clean in the same place.
+          </p>
+
+          <div class="signal-chain" aria-label="Signal chain">
+            <span data-content="product.chainIn">In</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainHarmonics">Harmonics</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-eq" data-content="product.chainEq">EQ</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-comp" data-content="product.chainComp">COMP</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span class="tag-rs" data-content="product.chainRs">RS</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainWidth">Width</span>
+            <span class="chain-sep" aria-hidden="true">→</span>
+            <span data-content="product.chainOut">Out</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section layers" id="layers">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="layers.eyebrow">Three layers</p>
+          <h2 data-content="layers.headline">One graph. Three jobs.</h2>
+
+          <article class="layer layer-eq reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-eq" data-content="layers.eqName">EQ</span>
+              <h3 data-content="layers.eqHeadline">Eight bands of surgical tone</h3>
+              <p data-content="layers.eqBody">
+                Bell, shelves, high/low pass, and plateau filters — drag nodes on the spectrum,
+                solo bands, and sculpt without jumping between plugins.
+              </p>
+            </div>
+            <figure class="product-shot product-eq">
+              <img
+                src="/images/chunk-eq.png"
+                data-content-alt="layers.eqAlt"
+                alt="CHUNK EQ window — multiband equalizer with spectrum graph and band controls"
+                width="1272"
+                height="875"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+
+          <article class="layer layer-comp reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-comp" data-content="layers.compName">COMP</span>
+              <h3 data-content="layers.compHeadline">Six-band dynamics with sidechain</h3>
+              <p data-content="layers.compBody">
+                Threshold, ratio, attack, release, knee, makeup, range, and gate per region —
+                plus external sidechain when you need to duck with intention.
+              </p>
+            </div>
+            <figure class="product-shot product-comp">
+              <img
+                src="/images/chunk-comp.png"
+                data-content-alt="layers.compAlt"
+                alt="CHUNK COMP window — multiband compressor with transfer curve and dynamics controls"
+                width="1273"
+                height="872"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+
+          <article class="layer layer-rs reveal">
+            <div class="layer-meta">
+              <span class="layer-name tag-rs" data-content="layers.rsName">RS</span>
+              <h3 data-content="layers.rsHeadline">Spectral compression that follows the sound</h3>
+              <p data-content="layers.rsBody">
+                RS splits each region into ~80 narrow log-spaced bands that compress independently —
+                gain reduction traces the inverse of the spectrum for transparent leveling and
+                resonance control.
+              </p>
+            </div>
+            <figure class="product-shot product-rs">
+              <img
+                src="/images/chunk-rs.png"
+                data-content-alt="layers.rsAlt"
+                alt="CHUNK RS window — resonance suppressor with spectral gain reduction"
+                width="1268"
+                height="871"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section class="section extras">
+        <div class="section-inner">
+          <p class="eyebrow" data-content="extras.eyebrow">Around the edges</p>
+          <h2 data-content="extras.headline">Input color. Output polish.</h2>
+          <ul class="extras-list">
+            <li data-content="extras.item1">Input &amp; output harmonic drive with even/odd balance</li>
+            <li data-content="extras.item2">Stereo width and continuous phase control</li>
+            <li data-content="extras.item3">Output ceiling / brickwall for clean peaks</li>
+            <li data-content="extras.item4">Live spectrum analyzer under every layer</li>
+            <li data-content="extras.item5">VST3 for Windows (macOS AU coming later)</li>
+          </ul>
+
+          <div class="extras-shots">
+            <figure class="product-shot product-in">
+              <img
+                src="/images/chunk-in.png"
+                data-content-alt="extras.inAlt"
+                alt="CHUNK input page — level, harmonics, gain, and phase"
+                width="1277"
+                height="878"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="product-shot product-out">
+              <img
+                src="/images/chunk-out.png"
+                data-content-alt="extras.outAlt"
+                alt="CHUNK output page — level, brickwall limiter, width, and harmonics"
+                width="1275"
+                height="872"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section compare" id="compare">
+        <div class="section-inner compare-inner">
+          <p class="eyebrow" data-content="compare.eyebrow">One plugin. The whole channel.</p>
+          <h2 data-content="compare.headline">The channel strip grew up.</h2>
+          <p class="section-lede" data-content="compare.lede">
+            Traditional strips give you EQ, compression, and a gate. CHUNK keeps that one-window
+            workflow and adds multiband, spectral, and resonance tools — without assembling a chain.
+          </p>
+
+          <div class="compare-scroll" role="region" aria-label="CHUNK feature comparison">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col" class="is-chunk">CHUNK</th>
+                  <th scope="col">Neutron 5</th>
+                  <th scope="col">FabFilter Mixing Bundle</th>
+                  <th scope="col">SSL Channel Strip 2</th>
+                  <th scope="col">Scheps Omni 2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Parametric EQ</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Compressor</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Gate / Expander</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Saturation / Color</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">De-essing</th>
+                  <td class="is-chunk"><span class="mark mark-partial" aria-label="Limited">◐</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Multiband processing</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-partial" aria-label="Limited">◐</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Spectral processing</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Dedicated resonance suppression</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Spectrum analyzer</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Everything in one plugin</th>
+                  <td class="is-chunk"><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-no" aria-label="No">✕</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                  <td><span class="mark mark-yes" aria-label="Yes">✓</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Plugins required</th>
+                  <td class="is-chunk compare-num">1</td>
+                  <td class="compare-num">1</td>
+                  <td class="compare-num">7</td>
+                  <td class="compare-num">1</td>
+                  <td class="compare-num">1</td>
+                </tr>
+                <tr>
+                  <th scope="row">Regular / MSRP</th>
+                  <td class="is-chunk compare-price-cell">$79</td>
+                  <td class="compare-price-cell">$299</td>
+                  <td class="compare-price-cell">$729</td>
+                  <td class="compare-price-cell">$149</td>
+                  <td class="compare-price-cell">$149</td>
+                </tr>
+                <tr>
+                  <th scope="row">CHUNK launch price</th>
+                  <td class="is-chunk compare-price-cell compare-launch">$39</td>
+                  <td class="compare-dash">—</td>
+                  <td class="compare-dash">—</td>
+                  <td class="compare-dash">—</td>
+                  <td class="compare-dash">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ol class="compare-notes">
+            <li data-content="compare.noteDeess">
+              CHUNK de-essing is via a high COMP band or an RS region, not a dedicated de-esser module.
+            </li>
+            <li data-content="compare.noteFabMb">
+              FabFilter Mixing Bundle includes Saturn 2 (multiband saturation) and Pro-Q 4, but not Pro-MB.
+            </li>
+            <li data-content="compare.noteFabRs">
+              Pro-Q 4 Spectral Dynamics can treat varying problem frequencies. It is not a dedicated automatic resonance-suppression module.
+            </li>
+            <li data-content="compare.notePrice">
+              Prices are manufacturer regular / MSRP. Sale prices vary; Waves regularly discounts Scheps Omni Channel 2.
+            </li>
+          </ol>
+
+          <div class="compare-close">
+            <p class="compare-kicker" data-content="compare.closeKicker">CHUNK</p>
+            <p class="compare-hero-price" data-content="compare.closePrice">$39</p>
+            <p class="compare-close-line" data-content="compare.closeLine">
+              One plugin. One window. The whole channel.
+            </p>
+            <p class="section-lede" data-content="compare.closeLede">
+              Everything you need to shape a channel without building a plugin chain.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pricing" id="pricing">
+        <div class="section-inner pricing-inner">
+          <p class="eyebrow" data-content="pricing.eyebrow">Get CHUNK</p>
+          <h2 data-content="pricing.headline">Launch pricing.</h2>
+          <p class="section-lede" data-content="pricing.lede">
+            Full license, 30-day free trial — no commitment while you put it on real sessions.
+          </p>
+
+          <div class="price-block">
+            <div class="price-row">
+              <span class="price-was" data-content="pricing.was">$79</span>
+              <span class="price-now" data-content="pricing.now">$39</span>
+            </div>
+            <p class="price-note" data-content="pricing.note">Launch offer · Regular price $79 · 30-day free trial</p>
+            <div class="cta-row">
+              <button
+                type="button"
+                class="btn btn-primary js-start-trial"
+                data-content="pricing.trial"
+              >
+                Start 30-day trial
+              </button>
+              <button type="button" class="btn btn-buy js-buy-chunk" data-content="pricing.buy">
+                Buy CHUNK — $39
+              </button>
+            </div>
+            <p class="checkout-status" id="checkout-status" hidden role="status"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img class="footer-logo" src="/images/assembly-dsp-logo.png" alt="Assembly DSP" width="200" height="118" />
+        <span class="footer-tag" data-content="footer.tag">Audio plugins, assembled.</span>
+      </div>
+      <p class="footer-fine">
+        © <span id="year"></span>
+        <span data-content="footer.copyright">Assembly DSP. CHUNK is a trademark of Assembly DSP.</span>
+        <a class="footer-support" href="/support.html">Support</a>
+        <span id="chunk-build" class="footer-build" hidden></span>
+        <span data-vst-line>VST is a trademark of Steinberg Media Technologies GmbH.</span>
+      </p>
+    </footer>
+
+    <dialog class="auth-dialog" id="trial-dialog" aria-labelledby="trial-title">
+      <form class="auth-form" id="trial-form">
+        <p class="eyebrow" id="trial-title">30-day trial</p>
+        <p class="auth-hint">
+          Enter your email so we can send your trial key — and resend it from Support if you need it later.
+        </p>
+        <label class="auth-label" for="trial-email">Email</label>
+        <input
+          id="trial-email"
+          class="auth-input"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+          placeholder="you@studio.com"
+        />
+        <p class="auth-error" id="trial-error" hidden></p>
+        <div class="cta-row">
+          <button type="submit" class="btn btn-primary" id="trial-submit">Start trial</button>
+          <button type="button" class="btn btn-ghost" id="trial-cancel">Cancel</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+Restore this snapshot (before the Oct 2026 copy cut):
+
+  copy backups\2026-10-04-pre-copy-cut\content.json        public\content.json
+  copy backups\2026-10-04-pre-copy-cut\site-content.json   data\site-content.json
+  copy backups\2026-10-04-pre-copy-cut\site-content.js     lib\site-content.js
+  copy backups\2026-10-04-pre-copy-cut\index.html          index.html
+  copy backups\2026-10-04-pre-copy-cut\support.html        support.html
+
+Then rebuild / redeploy the site.
