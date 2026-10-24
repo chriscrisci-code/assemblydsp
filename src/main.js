@@ -337,11 +337,39 @@ function initSpectrum() {
       ctx.fillRect(i * barW + 1, h * 0.22, Math.max(1, barW - 2), bh);
     }
 
-    if (!reduceMotion) raf = requestAnimationFrame(drawFrame);
+    if (running && !reduceMotion) raf = requestAnimationFrame(drawFrame);
+  }
+
+  let running = false;
+  let heroVisible = true;
+
+  function start() {
+    if (running || reduceMotion || document.hidden || !heroVisible) return;
+    running = true;
+    t0 = performance.now();
+    raf = requestAnimationFrame(drawFrame);
+  }
+
+  function stop() {
+    running = false;
+    cancelAnimationFrame(raf);
+    raf = 0;
   }
 
   resize();
-  drawFrame(performance.now());
+  if (reduceMotion) drawFrame(performance.now());
+
+  const hero = canvas.closest(".hero");
+  if (hero && "IntersectionObserver" in window) {
+    const heroWatch = new IntersectionObserver((entries) => {
+      heroVisible = entries.some((entry) => entry.isIntersecting);
+      if (heroVisible) start();
+      else stop();
+    });
+    heroWatch.observe(hero);
+  } else {
+    start();
+  }
 
   window.addEventListener("resize", () => {
     resize();
@@ -349,12 +377,8 @@ function initSpectrum() {
   });
 
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      cancelAnimationFrame(raf);
-    } else if (!reduceMotion) {
-      t0 = performance.now();
-      raf = requestAnimationFrame(drawFrame);
-    }
+    if (document.hidden) stop();
+    else start();
   });
 }
 

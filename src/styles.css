@@ -28,6 +28,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: #070a0b;
 }
 
 body {
@@ -42,16 +43,6 @@ body {
   font-size: 15px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
-}
-
-.noise {
-  pointer-events: none;
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  opacity: 0.045;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a {
@@ -76,13 +67,11 @@ img {
   gap: 1.5rem;
   padding: 1rem var(--pad);
   background: linear-gradient(180deg, rgba(7, 10, 11, 0.92), rgba(7, 10, 11, 0));
-  backdrop-filter: blur(0px);
   transition: background 0.35s var(--ease);
 }
 
 .site-header.is-scrolled {
-  background: rgba(7, 10, 11, 0.88);
-  backdrop-filter: blur(10px);
+  background: rgba(7, 10, 11, 0.96);
   border-bottom: 1px solid rgba(74, 106, 112, 0.25);
 }
 
@@ -426,67 +415,23 @@ img {
   max-width: 34rem;
 }
 
-/* Product shots — floating chassis with z-depth */
+/* Product shots — flat, so scrolling does not rebuild a 3D layer. */
 .product-shot {
   --shot-accent: var(--teal);
-  --shot-tilt: rotateY(-7deg) rotateX(5deg);
-  position: relative;
   margin: 0;
   padding: 0 0 1.75rem;
-  perspective: 1400px;
-  isolation: isolate;
-}
-
-.product-shot::before {
-  content: "";
-  position: absolute;
-  left: 12%;
-  right: 12%;
-  bottom: 0.15rem;
-  height: 1.6rem;
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7), transparent 70%);
-  filter: blur(10px);
-  z-index: 0;
-  transform: translateZ(0);
-  opacity: 0.9;
 }
 
 .product-shot img {
-  position: relative;
-  z-index: 1;
   display: block;
   width: 100%;
   height: auto;
   border-radius: 5px;
   border: 1px solid color-mix(in srgb, var(--shot-accent) 35%, transparent);
   background: var(--bg-deep);
-  transform: var(--shot-tilt);
-  transform-style: preserve-3d;
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.07) inset,
-    0 -1px 0 rgba(0, 0, 0, 0.45) inset,
-    0 2px 4px rgba(0, 0, 0, 0.35),
-    0 12px 28px rgba(0, 0, 0, 0.55),
-    0 28px 56px -8px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(0, 0, 0, 0.4),
-    0 0 40px -12px color-mix(in srgb, var(--shot-accent) 45%, transparent);
-  transition:
-    transform 0.55s var(--ease),
-    box-shadow 0.55s var(--ease);
-  will-change: transform;
-}
-
-.product-shot:hover img {
-  transform: rotateY(-2deg) rotateX(2deg) translateY(-4px) scale(1.015);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.09) inset,
-    0 -1px 0 rgba(0, 0, 0, 0.45) inset,
-    0 4px 8px rgba(0, 0, 0, 0.35),
-    0 18px 36px rgba(0, 0, 0, 0.55),
-    0 36px 64px -6px rgba(0, 0, 0, 0.72),
-    0 0 0 1px rgba(0, 0, 0, 0.4),
-    0 0 52px -8px color-mix(in srgb, var(--shot-accent) 55%, transparent);
+    0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 .product-eq {
@@ -495,11 +440,6 @@ img {
 
 .product-comp {
   --shot-accent: var(--comp);
-  --shot-tilt: rotateY(7deg) rotateX(5deg);
-}
-
-.product-comp:hover img {
-  transform: rotateY(2deg) rotateX(2deg) translateY(-4px) scale(1.015);
 }
 
 .product-rs {
@@ -509,14 +449,6 @@ img {
 .product-in,
 .product-out {
   --shot-accent: var(--teal);
-}
-
-.product-out {
-  --shot-tilt: rotateY(7deg) rotateX(5deg);
-}
-
-.product-out:hover img {
-  transform: rotateY(2deg) rotateX(2deg) translateY(-4px) scale(1.015);
 }
 
 .extras-shots {
@@ -535,25 +467,6 @@ img {
 @media (max-width: 859px) {
   .product-shot {
     padding-bottom: 1.25rem;
-  }
-
-  .product-shot img,
-  .product-comp img {
-    --shot-tilt: rotateY(-4deg) rotateX(3deg);
-    transform: rotateY(-4deg) rotateX(3deg);
-  }
-
-  .product-comp img {
-    transform: rotateY(4deg) rotateX(3deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .product-shot img,
-  .product-shot:hover img,
-  .product-comp:hover img {
-    transition: none;
-    transform: none;
   }
 }
 
