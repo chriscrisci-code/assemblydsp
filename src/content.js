@@ -35,6 +35,7 @@ export function applySiteContent(content) {
     el.setAttribute("alt", String(value));
   });
 
+  applyBackground(data.theme?.background);
   renderProductName(data.hero?.productName || "CHUNK");
   renderVstLine(data.footer?.vst || "");
 
@@ -44,6 +45,23 @@ export function applySiteContent(content) {
   loadCurrentBuild().then((build) => {
     applyFooterBuild(document.getElementById("chunk-build"), build);
   });
+}
+
+export function applyBackground(color) {
+  if (typeof color !== "string" || !/^#[0-9a-fA-F]{6}$/.test(color)) return;
+  const root = document.documentElement;
+  root.style.setProperty("--bg", color);
+  root.style.setProperty("--bg-deep", shadeHex(color, -15));
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", color);
+}
+
+function shadeHex(hex, amount) {
+  const value = Number.parseInt(hex.slice(1), 16);
+  const channel = (shift) =>
+    Math.max(0, Math.min(255, ((value >> shift) & 255) + amount))
+      .toString(16)
+      .padStart(2, "0");
+  return `#${channel(16)}${channel(8)}${channel(0)}`;
 }
 
 function renderProductName(name) {

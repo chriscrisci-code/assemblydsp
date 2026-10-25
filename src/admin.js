@@ -42,14 +42,33 @@ function buildForm(content) {
       field.type === "textarea"
         ? document.createElement("textarea")
         : document.createElement("input");
-    if (field.type !== "textarea") control.type = "text";
+    if (field.type === "color") control.type = "color";
+    else if (field.type !== "textarea") control.type = "text";
     control.name = field.key;
     control.className = field.type === "textarea" ? "admin-textarea" : "admin-input";
-    control.value = String(getPath(content, field.key) ?? "");
+    const stored = String(getPath(content, field.key) ?? "");
+    control.value = field.type === "color" ? colorValue(stored) : stored;
     if (field.type === "textarea") control.rows = 4;
-    label.appendChild(control);
+    if (field.type === "color") {
+      const row = document.createElement("span");
+      row.className = "admin-color";
+      const hex = document.createElement("span");
+      hex.className = "admin-color-hex";
+      hex.textContent = control.value;
+      control.addEventListener("input", () => {
+        hex.textContent = control.value;
+      });
+      row.append(control, hex);
+      label.appendChild(row);
+    } else {
+      label.appendChild(control);
+    }
     form.appendChild(label);
   }
+}
+
+function colorValue(value) {
+  return /^#[0-9a-fA-F]{6}$/.test(value) ? value : "#f3f4f2";
 }
 
 function readForm() {

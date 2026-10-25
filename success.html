@@ -60,7 +60,9 @@
     </main>
 
     <script type="module">
+      import { applyBackground, loadSiteContent } from "./src/content.js";
       import { applyDownloadButton, loadCurrentBuild } from "./src/build-info.js";
+      loadSiteContent().then((content) => applyBackground(content.theme?.background));
 
       const params = new URLSearchParams(window.location.search);
       const sessionId = params.get("session_id");

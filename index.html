@@ -65,7 +65,7 @@
     />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body>
+  <body class="home">
     <header class="site-header">
       <a class="logo" href="#top" aria-label="Assembly DSP">
         <img src="/images/assembly-dsp-mark.png" alt="" width="479" height="265" />
@@ -82,8 +82,15 @@
     </header>
 
     <main id="top">
-      <section class="board" id="chunk" aria-labelledby="brand">
-        <div class="board-copy">
+      <section class="console-hero" id="chunk" aria-labelledby="brand">
+        <img
+          class="console-hero-photo"
+          src="/images/console-hero.jpg"
+          alt=""
+          width="1376"
+          height="768"
+        />
+        <div class="console-hero-copy">
           <p class="eyebrow" data-content="product.eyebrow">CHUNK</p>
           <p class="brand" id="brand" data-content="hero.brand">Assembly DSP</p>
           <h1 class="chunk-mark" aria-label="CHUNK">
@@ -98,23 +105,8 @@
             <button type="button" class="btn btn-primary js-start-trial" data-content="hero.ctaTrial">Start free trial</button>
             <a class="btn btn-ghost" href="#layers" data-content="hero.ctaLearn">See what it does</a>
           </div>
-          <div class="signal-chain" aria-label="Signal chain">
-            <span data-content="product.chainIn">In</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span data-content="product.chainHarmonics">Harmonics</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span class="tag-eq" data-content="product.chainEq">EQ</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span class="tag-comp" data-content="product.chainComp">COMP</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span class="tag-rs" data-content="product.chainRs">RS</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span data-content="product.chainWidth">Width</span>
-            <span class="chain-sep" aria-hidden="true">→</span>
-            <span data-content="product.chainOut">Out</span>
-          </div>
         </div>
-        <figure class="board-shot">
+        <figure class="console-hero-shot">
           <img
             src="/images/chunk-eq.png"
             data-content-alt="layers.eqAlt"
@@ -128,6 +120,24 @@
             <p data-content="layers.eqBody">Drag a node, shape it, solo it.</p>
           </figcaption>
         </figure>
+      </section>
+
+      <section class="board" aria-label="Signal chain">
+        <div class="signal-chain" aria-label="Signal chain">
+          <span data-content="product.chainIn">In</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span data-content="product.chainHarmonics">Harmonics</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span class="tag-eq" data-content="product.chainEq">EQ</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span class="tag-comp" data-content="product.chainComp">COMP</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span class="tag-rs" data-content="product.chainRs">RS</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span data-content="product.chainWidth">Width</span>
+          <span class="chain-sep" aria-hidden="true">→</span>
+          <span data-content="product.chainOut">Out</span>
+        </div>
       </section>
 
       <section class="section layers" id="layers">

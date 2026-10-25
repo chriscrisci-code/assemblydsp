@@ -108,7 +108,9 @@
     </footer>
 
     <script type="module">
+      import { applyBackground, loadSiteContent } from "./src/content.js";
       import { applyFooterBuild, loadCurrentBuild } from "./src/build-info.js";
+      loadSiteContent().then((content) => applyBackground(content.theme?.background));
       loadCurrentBuild().then((build) => {
         applyFooterBuild(document.getElementById("chunk-build"), build);
       });

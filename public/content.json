@@ -15,7 +15,7 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "EQ, compressor, and resonance suppressor. One graph.",
+    "lede": "A powerful channel strip. Lightweight, comprehensive, and a joy to use.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
@@ -87,5 +87,8 @@
     "tag": "Home of the CHUNK. More on the way.",
     "copyright": "Assembly DSP. CHUNK is a trademark of Assembly DSP.",
     "vst": "VST is a trademark of Steinberg Media Technologies GmbH."
+  },
+  "theme": {
+    "background": "#dfd7af"
   }
 }
