@@ -1,4 +1,7 @@
 {
+  "theme": {
+    "background": "#282625"
+  },
   "meta": {
     "title": "CHUNK VST3 — Multiband Channel Strip | Assembly DSP",
     "description": "Windows VST3 channel strip. EQ, compressor, RS. $39. 30-day trial."
@@ -87,8 +90,5 @@
     "tag": "Home of the CHUNK. More on the way.",
     "copyright": "Assembly DSP. CHUNK is a trademark of Assembly DSP.",
     "vst": "VST is a trademark of Steinberg Media Technologies GmbH."
-  },
-  "theme": {
-    "background": "#dfd7af"
   }
 }
