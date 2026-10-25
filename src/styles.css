@@ -82,6 +82,7 @@ img {
   display: block;
   height: 1.7rem;
   width: auto;
+  filter: brightness(0);
 }
 
 .nav {
@@ -776,6 +777,7 @@ img {
   display: block;
   height: 4.25rem;
   width: auto;
+  filter: brightness(0);
 }
 
 .footer-tag {
