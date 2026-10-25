@@ -10,7 +10,7 @@
     />
     <link rel="canonical" href="https://www.assemblydsp.com/" />
     <link rel="icon" href="/images/assembly-dsp-mark.png" type="image/png" />
-    <meta name="theme-color" content="#0b1416" />
+    <meta name="theme-color" content="#f3f4f2" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Assembly DSP" />
     <meta property="og:title" content="CHUNK VST3 — Multiband Channel Strip | Assembly DSP" />
@@ -60,7 +60,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/src/styles.css" />
@@ -82,33 +82,22 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="brand">
-        <div class="hero-visual" aria-hidden="true">
-          <canvas id="spectrum" width="1600" height="900"></canvas>
-          <div class="hero-fade"></div>
-        </div>
-
-        <div class="hero-copy">
+      <section class="board" id="chunk" aria-labelledby="brand">
+        <div class="board-copy">
+          <p class="eyebrow" data-content="product.eyebrow">CHUNK</p>
           <p class="brand" id="brand" data-content="hero.brand">Assembly DSP</p>
           <h1 class="chunk-mark" aria-label="CHUNK">
             <span class="c-teal">C</span><span class="c-eq">H</span><span class="c-comp">U</span><span class="c-rs">N</span><span class="c-teal">K</span>
           </h1>
+          <p class="board-title" data-content="product.headline">A channel strip.</p>
           <p class="lede" data-content="hero.lede">
             EQ, compressor, and resonance suppressor. One graph.
           </p>
+          <p class="section-lede" data-content="product.lede" hidden></p>
           <div class="cta-row">
             <button type="button" class="btn btn-primary js-start-trial" data-content="hero.ctaTrial">Start free trial</button>
-            <a class="btn btn-ghost" href="#chunk" data-content="hero.ctaLearn">See what it does</a>
+            <a class="btn btn-ghost" href="#layers" data-content="hero.ctaLearn">See what it does</a>
           </div>
-        </div>
-      </section>
-
-      <section class="section product" id="chunk">
-        <div class="section-inner">
-          <p class="eyebrow" data-content="product.eyebrow">CHUNK</p>
-          <h2 data-content="product.headline">A channel strip.</h2>
-          <p class="section-lede" data-content="product.lede" hidden></p>
-
           <div class="signal-chain" aria-label="Signal chain">
             <span data-content="product.chainIn">In</span>
             <span class="chain-sep" aria-hidden="true">→</span>
@@ -125,6 +114,20 @@
             <span data-content="product.chainOut">Out</span>
           </div>
         </div>
+        <figure class="board-shot">
+          <img
+            src="/images/chunk-eq.png"
+            data-content-alt="layers.eqAlt"
+            alt="CHUNK EQ window — multiband equalizer with spectrum graph and band controls"
+            width="1022"
+            height="701"
+          />
+          <figcaption class="layer-meta">
+            <span class="layer-name tag-eq" data-content="layers.eqName">EQ</span>
+            <h2 data-content="layers.eqHeadline">Eight bands.</h2>
+            <p data-content="layers.eqBody">Drag a node, shape it, solo it.</p>
+          </figcaption>
+        </figure>
       </section>
 
       <section class="section layers" id="layers">
@@ -132,25 +135,7 @@
           <p class="eyebrow" data-content="layers.eyebrow">Layers</p>
           <h2 data-content="layers.headline">EQ, COMP, and RS.</h2>
 
-          <article class="layer layer-eq reveal">
-            <div class="layer-meta">
-              <span class="layer-name tag-eq" data-content="layers.eqName">EQ</span>
-              <h3 data-content="layers.eqHeadline">Eight bands.</h3>
-              <p data-content="layers.eqBody">Drag a node, shape it, solo it.</p>
-            </div>
-            <figure class="product-shot product-eq">
-              <img
-                src="/images/chunk-eq.png"
-                data-content-alt="layers.eqAlt"
-                alt="CHUNK EQ window — multiband equalizer with spectrum graph and band controls"
-                width="1022"
-                height="701"
-                loading="lazy"
-              />
-            </figure>
-          </article>
-
-          <article class="layer layer-comp reveal">
+          <article class="layer layer-comp">
             <div class="layer-meta">
               <span class="layer-name tag-comp" data-content="layers.compName">COMP</span>
               <h3 data-content="layers.compHeadline">Six bands.</h3>
