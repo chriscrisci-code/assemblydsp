@@ -1169,7 +1169,25 @@ img {
 }
 
 .admin-body {
+  --bg: #221f1e;
+  --bg-deep: #1a1817;
   background: var(--bg-deep);
+  color: var(--text);
+}
+
+.admin-body .site-header {
+  background: var(--bg);
+  border-bottom-color: rgba(243, 238, 228, 0.14);
+}
+
+.admin-body .logo,
+.admin-body .nav a:hover {
+  color: var(--cream);
+}
+
+.admin-body .header-cta {
+  color: var(--teal-text);
+  border-color: rgba(158, 224, 218, 0.5);
 }
 
 .admin-page {
@@ -1229,6 +1247,11 @@ img {
 .admin-textarea {
   min-height: 6.5rem;
   resize: vertical;
+}
+
+.admin-input::placeholder,
+.admin-textarea::placeholder {
+  color: rgba(243, 238, 228, 0.45);
 }
 
 .admin-color {

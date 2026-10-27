@@ -4,7 +4,7 @@
   },
   "meta": {
     "title": "CHUNK VST3 — Multiband Channel Strip | Assembly DSP",
-    "description": "Windows VST3 channel strip. EQ, compressor, RS. $39. 30-day trial."
+    "description": "Windows VST3 channel strip. EQ, compressor, resonance suppressor. Total dynamic and EQ control $39. 30-day trial."
   },
   "header": {
     "logo": "Assembly DSP",
@@ -18,7 +18,7 @@
   "hero": {
     "brand": "Assembly DSP",
     "productName": "CHUNK",
-    "lede": "A powerful channel strip. Lightweight, comprehensive, and a joy to use.",
+    "lede": "A  channel strip. Lightweight, comprehensive, with total dynamic and EQ control.",
     "ctaTrial": "Start free trial",
     "ctaLearn": "See what it does"
   },
@@ -39,15 +39,15 @@
     "headline": "EQ, COMP, and RS.",
     "eqName": "EQ",
     "eqHeadline": "Eight bands.",
-    "eqBody": "Drag a node, shape it, solo it.",
+    "eqBody": "Each band can be any filter type, HP/LP, shelf, bell or variable width plateau.  Each one is dynamic with +/- 24db dynamic range, compression or expansion.  Solo a band to hear only the frequencies it is processing.",
     "eqAlt": "CHUNK EQ window — multiband equalizer with spectrum graph and band controls",
     "compName": "COMP",
     "compHeadline": "Six bands.",
-    "compBody": "Gate and sidechain on each. External, or another band.",
+    "compBody": "Six frequency regions can be created.  Each one has Threshold, Ratio, Attack, Release, Knee and Range, along with Gate with Threshold, Release, and Ratio.  Sidechain one band to another simply by dragging a connector from one band to another.",
     "compAlt": "CHUNK COMP window — multiband compressor with transfer curve and dynamics controls",
     "rsName": "RS",
     "rsHeadline": "Resonance.",
-    "rsBody": "Up to four regions. Each splits into about 80 narrow bands and pulls resonances as they show up.",
+    "rsBody": "Four regions can be created.  Each one is made of dozens of narrow band compressors.  Great for taming lingering resonances and de-essing.  ",
     "rsAlt": "CHUNK RS window — resonance suppressor with spectral gain reduction"
   },
   "extras": {
