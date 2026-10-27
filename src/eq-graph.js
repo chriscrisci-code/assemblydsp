@@ -200,9 +200,10 @@ export function mountEqGraph(root) {
   }
 
   function syncMenu() {
-    if (!menuNode || menu.hidden) return;
+    if (!menuNode) return;
     titleEl.textContent = `Node ${nodeIndex(menuNode)}`;
     detailEl.textContent = `${formatFreq(menuNode.freq)} · ${formatGain(menuNode.gain)} · ${kindLabel(menuNode.type)}`;
+    colorInput.value = menuNode.color;
     for (const button of swatchRow.children) {
       button.setAttribute("aria-pressed", button.dataset.color === menuNode.color ? "true" : "false");
     }
