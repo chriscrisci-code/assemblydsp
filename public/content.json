@@ -10,7 +10,6 @@
     "logo": "Assembly DSP",
     "navChunk": "CHUNK",
     "navLayers": "Layers",
-    "navCompare": "Compare",
     "navDownload": "Download",
     "navSupport": "Support",
     "download": "Download"
@@ -59,19 +58,6 @@
     "item5": "Windows VST3. Mac later.",
     "inAlt": "CHUNK input page — level, harmonics, gain, and phase",
     "outAlt": "CHUNK output page — level, brickwall limiter, width, and harmonics"
-  },
-  "compare": {
-    "eyebrow": "Compare",
-    "headline": "How it stacks up.",
-    "lede": "",
-    "noteDeess": "",
-    "noteFabMb": "FabFilter Mixing Bundle includes Saturn 2 (multiband saturation) and Pro-Q 4, but not Pro-MB.",
-    "noteFabRs": "Pro-Q 4 Spectral Dynamics can treat varying problem frequencies. It is not a dedicated automatic resonance-suppression module.",
-    "notePrice": "",
-    "closeKicker": "CHUNK",
-    "closePrice": "",
-    "closeLine": "",
-    "closeLede": ""
   },
   "pricing": {
     "eyebrow": "Get CHUNK",
