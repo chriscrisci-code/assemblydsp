@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 Disallow: /admin.html
+Disallow: /eq.html
 Disallow: /success.html
 Disallow: /trial-success.html
 Disallow: /api/

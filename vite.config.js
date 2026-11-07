@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
           trialSuccess: resolve(rootDir, "trial-success.html"),
           support: resolve(rootDir, "support.html"),
           admin: resolve(rootDir, "admin.html"),
+          eq: resolve(rootDir, "eq.html"),
         },
       },
     },

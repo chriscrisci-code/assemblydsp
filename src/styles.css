@@ -297,6 +297,17 @@ img {
   color: rgba(247, 242, 232, 0.76);
 }
 
+.eq-color-link {
+  display: inline-block;
+  margin-top: 0.55rem;
+  color: #e4c27a;
+  font-size: 0.95rem;
+}
+
+.eq-color-link:hover {
+  text-decoration: underline;
+}
+
 @media (min-width: 960px) {
   .console-hero-shot {
     padding: 5.5rem 0 clamp(2.5rem, 6vh, 4rem);
