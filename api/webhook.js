@@ -16,6 +16,9 @@ export default async function handler(req, res) {
     return;
   }
 
+  sendJson(res, 200, { received: true, offline: true });
+  return;
+
   if (!isWebhookConfigured()) {
     res.statusCode = 400;
     res.end("Webhook is not configured.");

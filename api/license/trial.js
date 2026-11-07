@@ -20,6 +20,9 @@ export default async function handler(req, res) {
 
   res.setHeader("Access-Control-Allow-Origin", "*");
 
+  sendJson(res, 410, { error: "Trials are offline. CHUNK is free." });
+  return;
+
   if (!isLicenseConfigured()) {
     sendJson(res, 503, { error: "Licensing is not configured yet." });
     return;

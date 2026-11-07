@@ -1,6 +1,6 @@
 import { getPath, mergeContent } from "../lib/site-content.js";
 import { isAdminEnabled } from "./admin-enabled.js";
-import { applyFooterBuild, loadCurrentBuild } from "./build-info.js";
+import { applyDownloadLinks, applyFooterBuild, loadCurrentBuild } from "./build-info.js";
 
 const LETTER_CLASSES = ["c-teal", "c-eq", "c-comp", "c-rs", "c-teal"];
 
@@ -43,6 +43,7 @@ export function applySiteContent(content) {
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
   loadCurrentBuild().then((build) => {
+    applyDownloadLinks(build);
     applyFooterBuild(document.getElementById("chunk-build"), build);
   });
 }

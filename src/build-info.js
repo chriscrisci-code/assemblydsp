@@ -27,6 +27,7 @@ export async function loadCurrentBuild() {
       product: String(data.product || "chunk"),
       version,
       filename,
+      url: String(data.url || "").trim(),
       releasedAt: data.releasedAt ? String(data.releasedAt) : null,
     };
   } catch {
@@ -50,6 +51,14 @@ export function applyDownloadButton(button, hint, build) {
     hint.textContent = bits.join(" · ");
     hint.hidden = false;
   }
+}
+
+export function applyDownloadLinks(build, root = document) {
+  const url = String(build?.url || "").trim();
+  if (!url) return;
+  root.querySelectorAll(".js-download-chunk").forEach((el) => {
+    if (el instanceof HTMLAnchorElement) el.href = url;
+  });
 }
 
 export function applyFooterBuild(el, build) {

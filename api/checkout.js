@@ -20,6 +20,9 @@ export default async function handler(req, res) {
     return;
   }
 
+  sendJson(res, 410, { error: "Payments are offline. CHUNK is free." });
+  return;
+
   if (!isCheckoutConfigured()) {
     sendJson(res, 503, { error: "Payments are not configured yet." });
     return;

@@ -3,12 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Purchase complete — Assembly DSP</title>
+    <title>CHUNK is free — Assembly DSP</title>
     <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="Thanks for buying CHUNK from Assembly DSP. Your license key is below."
-    />
+    <meta name="description" content="CHUNK is free. Download the Windows VST3." />
     <link rel="icon" href="/images/assembly-dsp-mark.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,121 +21,34 @@
         <img src="/images/assembly-dsp-mark.png" alt="" width="479" height="265" />
         <span>Assembly DSP</span>
       </a>
-      <a class="header-cta" href="/#pricing">Back to site</a>
+      <a class="header-cta js-download-chunk" href="/#download">Download</a>
     </header>
 
     <main class="success-page">
       <div class="success-inner">
-        <p class="eyebrow">Checkout</p>
-        <h1 class="success-title">You’re in.</h1>
+        <p class="eyebrow">CHUNK</p>
+        <h1 class="success-title">CHUNK is free.</h1>
         <p class="section-lede">
-          Thanks for purchasing <strong>CHUNK</strong>. Stripe will email your receipt.
-          Enter this license key in CHUNK to activate (up to 2 machines).
+          Download the Windows VST3 and open it in your DAW. No license key.
         </p>
-
-        <div class="license-box" id="license-box">
-          <p class="auth-label">Your license key</p>
-          <p class="license-key" id="license-key">Loading…</p>
-          <p class="success-session" id="license-status" role="status"></p>
-          <button type="button" class="btn btn-ghost" id="copy-key" hidden>Copy key</button>
-        </div>
-
-        <ol class="section-lede" style="padding-left: 1.25rem; margin: 1.5rem 0">
-          <li>Download and install CHUNK (or re-download if you already have the trial build)</li>
-          <li>Open CHUNK → License → paste this paid key → Activate</li>
-        </ol>
-
-        <p class="success-session" id="session-line" hidden></p>
         <div class="cta-row">
-          <a class="btn btn-primary" id="download-btn" href="#" hidden>Download CHUNK</a>
+          <a class="btn btn-primary js-download-chunk" href="/#download">Download CHUNK</a>
           <a class="btn btn-ghost" href="/">Back to Assembly DSP</a>
-          <a class="btn btn-ghost" href="/#layers">See the layers</a>
         </div>
         <p class="download-hint" id="download-hint" hidden></p>
-        <p class="success-session" id="download-status" role="status"></p>
       </div>
     </main>
 
     <script type="module">
       import { applyBackground, loadSiteContent } from "./src/content.js";
-      import { applyDownloadButton, loadCurrentBuild } from "./src/build-info.js";
+      import { applyDownloadButton, applyDownloadLinks, loadCurrentBuild } from "./src/build-info.js";
       loadSiteContent().then((content) => applyBackground(content.theme?.background));
-
-      const params = new URLSearchParams(window.location.search);
-      const sessionId = params.get("session_id");
-      const line = document.getElementById("session-line");
-      const keyEl = document.getElementById("license-key");
-      const statusEl = document.getElementById("license-status");
-      const copyBtn = document.getElementById("copy-key");
-      const downloadBtn = document.getElementById("download-btn");
+      const downloadBtn = document.querySelector(".js-download-chunk.btn");
       const downloadHint = document.getElementById("download-hint");
-      const downloadStatus = document.getElementById("download-status");
-      loadCurrentBuild().then((build) => applyDownloadButton(downloadBtn, downloadHint, build));
-
-      if (sessionId && line) {
-        line.hidden = false;
-        line.textContent = `Order reference: ${sessionId}`;
-      }
-
-      function wireDownload() {
-        if (!sessionId || !downloadBtn) return;
-        downloadBtn.hidden = false;
-        downloadBtn.addEventListener("click", async (e) => {
-          e.preventDefault();
-          downloadStatus.textContent = "Preparing download…";
-          try {
-            const response = await fetch(
-              `/api/download?session_id=${encodeURIComponent(sessionId)}`,
-            );
-            const body = await response.json().catch(() => ({}));
-            if (!response.ok || !body.url) {
-              throw new Error(body.error || "Download not available yet.");
-            }
-            applyDownloadButton(downloadBtn, downloadHint, body);
-            window.location.assign(body.url);
-            downloadStatus.textContent = "";
-          } catch (err) {
-            downloadStatus.textContent =
-              err instanceof Error ? err.message : "Download failed.";
-          }
-        });
-      }
-
-      async function loadLicense(attempt = 0) {
-        if (!sessionId) {
-          keyEl.textContent = "—";
-          statusEl.textContent = "Missing checkout session.";
-          return;
-        }
-        try {
-          const response = await fetch(
-            `/api/license/by-session?session_id=${encodeURIComponent(sessionId)}`,
-          );
-          const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.licenseKey) {
-            if (attempt < 8) {
-              statusEl.textContent = "Preparing your key…";
-              setTimeout(() => loadLicense(attempt + 1), 1500);
-              return;
-            }
-            throw new Error(data.error || "Could not load license key.");
-          }
-          keyEl.textContent = data.licenseKey;
-          statusEl.textContent = "Enter this key in CHUNK → License.";
-          copyBtn.hidden = false;
-          copyBtn.onclick = async () => {
-            await navigator.clipboard.writeText(data.licenseKey);
-            copyBtn.textContent = "Copied";
-          };
-          wireDownload();
-        } catch (err) {
-          keyEl.textContent = "—";
-          statusEl.textContent =
-            err instanceof Error ? err.message : "Could not load license key.";
-        }
-      }
-
-      loadLicense();
+      loadCurrentBuild().then((build) => {
+        applyDownloadLinks(build);
+        applyDownloadButton(downloadBtn, downloadHint, build);
+      });
     </script>
   </body>
 </html>

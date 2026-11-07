@@ -3,12 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trial started — Assembly DSP</title>
+    <title>CHUNK is free — Assembly DSP</title>
     <meta name="robots" content="noindex, nofollow" />
-    <meta
-      name="description"
-      content="Your CHUNK 30-day trial license key and download."
-    />
+    <meta name="description" content="CHUNK is free. Download the Windows VST3." />
     <link rel="icon" href="/images/assembly-dsp-mark.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,110 +21,34 @@
         <img src="/images/assembly-dsp-mark.png" alt="" width="479" height="265" />
         <span>Assembly DSP</span>
       </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="/support.html">Support</a>
-      </nav>
-      <a class="header-cta" href="/#pricing">Buy CHUNK</a>
+      <a class="header-cta js-download-chunk" href="/#download">Download</a>
     </header>
 
     <main class="success-page">
       <div class="success-inner">
-        <p class="eyebrow">30-day trial</p>
-        <h1 class="success-title">You’re set.</h1>
+        <p class="eyebrow">CHUNK</p>
+        <h1 class="success-title">CHUNK is free.</h1>
         <p class="section-lede">
-          Install CHUNK, open it in your DAW, then paste this key under
-          <strong>License → Activate</strong>. Full DSP for 30 days — then buy to keep going.
-          We also email this key to you — check spam if you don’t see it. Lost it later?
-          <a href="/support.html">Recover it on Support</a>.
+          Download the Windows VST3 and open it in your DAW. No license key.
         </p>
-
-        <div class="license-box" id="license-box">
-          <p class="auth-label">Your trial key</p>
-          <p class="license-key" id="license-key">Loading…</p>
-          <p class="success-session" id="license-status" role="status"></p>
-          <button type="button" class="btn btn-ghost" id="copy-key" hidden>Copy key</button>
-        </div>
-
-        <ol class="section-lede" style="padding-left: 1.25rem; margin: 1.5rem 0">
-          <li>Download and install CHUNK.vst3 into your VST3 folder</li>
-          <li>Open CHUNK in your DAW → License</li>
-          <li>Paste the key → Activate</li>
-        </ol>
-
         <div class="cta-row">
-          <a class="btn btn-primary" id="download-btn" href="#" hidden>Download CHUNK</a>
-          <a class="btn btn-ghost" href="/#pricing">Buy full license</a>
-          <a class="btn btn-ghost" href="/">Back to site</a>
+          <a class="btn btn-primary js-download-chunk" href="/#download">Download CHUNK</a>
+          <a class="btn btn-ghost" href="/">Back to Assembly DSP</a>
         </div>
         <p class="download-hint" id="download-hint" hidden></p>
-        <p class="success-session" id="download-status" role="status"></p>
       </div>
     </main>
 
     <script type="module">
       import { applyBackground, loadSiteContent } from "./src/content.js";
-      import { applyDownloadButton, loadCurrentBuild } from "./src/build-info.js";
+      import { applyDownloadButton, applyDownloadLinks, loadCurrentBuild } from "./src/build-info.js";
       loadSiteContent().then((content) => applyBackground(content.theme?.background));
-
-      const STORAGE = "assemblydsp_trial";
-      const keyEl = document.getElementById("license-key");
-      const statusEl = document.getElementById("license-status");
-      const copyBtn = document.getElementById("copy-key");
-      const downloadBtn = document.getElementById("download-btn");
+      const downloadBtn = document.querySelector(".js-download-chunk.btn");
       const downloadHint = document.getElementById("download-hint");
-      const downloadStatus = document.getElementById("download-status");
-      loadCurrentBuild().then((build) => applyDownloadButton(downloadBtn, downloadHint, build));
-
-      function readTrial() {
-        try {
-          const raw = sessionStorage.getItem(STORAGE);
-          return raw ? JSON.parse(raw) : null;
-        } catch {
-          return null;
-        }
-      }
-
-      const params = new URLSearchParams(window.location.search);
-      const fromQuery = params.get("key");
-      const data = readTrial() || (fromQuery ? { licenseKey: fromQuery } : null);
-
-      if (!data?.licenseKey) {
-        keyEl.textContent = "—";
-        statusEl.textContent =
-          "No trial on this page. Start one from the CHUNK product page.";
-      } else {
-        keyEl.textContent = data.licenseKey;
-        const exp = data.expiresAt
-          ? `Expires ${new Date(data.expiresAt).toLocaleString()}.`
-          : "Valid for 30 days after activation.";
-        statusEl.textContent = exp;
-        copyBtn.hidden = false;
-        copyBtn.onclick = async () => {
-          await navigator.clipboard.writeText(data.licenseKey);
-          copyBtn.textContent = "Copied";
-        };
-
-        downloadBtn.hidden = false;
-        downloadBtn.addEventListener("click", async (e) => {
-          e.preventDefault();
-          downloadStatus.textContent = "Preparing download…";
-          try {
-            const response = await fetch(
-              `/api/download?license_key=${encodeURIComponent(data.licenseKey)}`,
-            );
-            const body = await response.json().catch(() => ({}));
-            if (!response.ok || !body.url) {
-              throw new Error(body.error || "Download not available yet.");
-            }
-            applyDownloadButton(downloadBtn, downloadHint, body);
-            window.location.assign(body.url);
-            downloadStatus.textContent = "";
-          } catch (err) {
-            downloadStatus.textContent =
-              err instanceof Error ? err.message : "Download failed.";
-          }
-        });
-      }
+      loadCurrentBuild().then((build) => {
+        applyDownloadLinks(build);
+        applyDownloadButton(downloadBtn, downloadHint, build);
+      });
     </script>
   </body>
 </html>
